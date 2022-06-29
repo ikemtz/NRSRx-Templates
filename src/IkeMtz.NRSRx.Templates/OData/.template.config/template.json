@@ -43,13 +43,6 @@
         "defaultFormat": "D"
       }
     },
-    "AuthorName": {
-      "type": "parameter",
-      "defaultValue": "(insert author name)",
-      "replaces": "AuthorName",
-      "datatype": "text",
-      "description": "Author name"
-    },
     "HttpPort": {
       "type": "parameter",
       "datatype": "integer",

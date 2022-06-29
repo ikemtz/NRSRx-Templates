@@ -54,5 +54,10 @@ namespace NRSRx_OData
         .AddDbContext<DatabaseContext>(x => x.UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString)));
 #endif
     }
+
+    public override void SetupHealthChecks(IServiceCollection services, IHealthChecksBuilder healthChecks)
+    {
+      _ = healthChecks.AddDbContextCheck<DatabaseContext>();
+    }
   }
 }
