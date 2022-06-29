@@ -3,13 +3,7 @@
 ################################################################################
 
 /.vs
-/NRSRx Project Templates/obj
-/NRSRx_OData/obj
-/NRSRx.Extensions/bin
-/NRSRx.Extensions/obj
-/NRSRx_OData_Wizard/bin
-/NRSRx_OData_Wizard/obj
-*.pfx
-OData/bin
-OData/obj
 test
+NRSRx_Templates.sln
+**/bin
+**/obj

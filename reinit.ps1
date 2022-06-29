@@ -1,5 +1,5 @@
-dotnet new --uninstall ./OData
-dotnet clean ./OData
-dotnet build ./OData
+dotnet new --uninstall ./IkeMtz.NRSRx.Templates
+dotnet clean ./IkeMtz.NRSRx.Templates
+dotnet build ./IkeMtz.NRSRx.Templates
 ./reset.ps1
-dotnet new --install ./OData
+dotnet new --install ./IkeMtz.NRSRx.Templates
