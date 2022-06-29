@@ -10,3 +10,6 @@
 /NRSRx_OData_Wizard/bin
 /NRSRx_OData_Wizard/obj
 *.pfx
+OData/bin
+OData/obj
+test

@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>myid01</UserSecretsId>
+    <ProjectGuid>{0C3D7E51-A83A-4007-85E9-F16A167A51C8}</ProjectGuid>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;CA1707;CS1591;CS8618</NoWarn>
+    <DocumentationFile>./NRSRx_OData.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="readme.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="IkeMtz.NRSRx.Core.OData" Version="6.0.144.5" />
+    <!--#if (ApplicationInsights) -->
+    <PackageReference Include="IkeMtz.NRSRx.Logging.ApplicationInsights" Version="6.0.144.5" />
+    <!--#endif -->
+    <!--#if (Elasticsearch) -->
+    <PackageReference Include="IkeMtz.NRSRx.Logging.Elasticsearch" Version="6.0.144.5" />
+    <!--#endif -->
+    <!--#if (Splunk) -->
+    <PackageReference Include="IkeMtz.NRSRx.Logging.Splunk" Version="6.0.144.5" />
+    <!--#endif -->
+    <!--#if (MsSql) -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
+    <!--#endif -->
+    <!--#if (MySql) -->
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
+    <!--#endif -->
+  </ItemGroup>
+</Project>
