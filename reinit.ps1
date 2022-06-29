@@ -1,5 +1,5 @@
-dotnet new --uninstall ./IkeMtz.NRSRx.Templates
-dotnet clean ./IkeMtz.NRSRx.Templates
-dotnet build ./IkeMtz.NRSRx.Templates
+dotnet new --uninstall ./src/IkeMtz.NRSRx.Templates
+dotnet clean ./src/IkeMtz.NRSRx.Templates
+dotnet build ./src/IkeMtz.NRSRx.Templates
 ./reset.ps1
-dotnet new --install ./IkeMtz.NRSRx.Templates
+dotnet new --install ./src/IkeMtz.NRSRx.Templates
