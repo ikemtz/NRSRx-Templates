@@ -3,6 +3,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
+  ALL_PROJECTS: '**/*.csproj'
   PACKAGE_PROJECTS: 'src/**/IkeMtz.NRSRx.Templates.csproj'
   BUILDCONFIGURATION: 'Debug'
 
@@ -25,6 +26,14 @@ jobs:
     inputs:
       targetType: 'inline'
       script: 'export DOTNET_ENVIRONMENT=Development && export ASPNETCORE_ENVIRONMENT=Development'
+
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'restore'
+      projects: '$(ALL_PROJECTS)'
+      feedsToUse: 'select'
+      noCache: true
+      verbosityRestore: 'Minimal'
 
   - task: Assembly-Info-NetCore@2
     displayName: 'Set Assembly Manifest Data'
