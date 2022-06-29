@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/NRSRx Project Templates/obj
+/NRSRx_OData/obj
+/NRSRx.Extensions/bin
+/NRSRx.Extensions/obj
+/NRSRx_OData_Wizard/bin
+/NRSRx_OData_Wizard/obj
+*.pfx
