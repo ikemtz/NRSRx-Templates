@@ -1,19 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>@ikemtz</Authors>
-    <Description>A collection of dotnet templates to facilitate the adoption of the NRSRx framework.</Description>
-    <PackageProjectUrl>https://github.com/ikemtz/NRSRx_Templates</PackageProjectUrl>
+  <PropertyGroup Label="Build">
+    <PackageType>Template</PackageType>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+  </PropertyGroup>
+  
+  <PropertyGroup Label="Package">
+    <Title>NRSRx Project Templates</Title>
+    <Authors>Isaac Martinez (@ikemtz)</Authors>
+    <Description>Project templates with batteries included, providing the minimum amount of code required to get you going.</Description>
+    <Copyright>Copyright © Isaac Martinez. All rights Reserved</Copyright>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/ikemtz/NRSRx-Templates</PackageProjectUrl>
     <PackageIcon>ProfilePic.jpg</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/ikemtz/NRSRx_Templates.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>NRSRx</PackageTags>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageTags>.NET OData NRSRx</PackageTags>
+    <PackageReleaseNotes>https://github.com/Dotnet-Boxed/Templates/releases</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
