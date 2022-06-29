@@ -32,7 +32,6 @@
       "generator": "guid",
       "replaces": "myid01",
       "parameters": {
-        "format": "NDnd",
         "defaultFormat": "D"
       }
     },
@@ -41,7 +40,6 @@
       "generator": "guid",
       "replaces": "0C3D7E51-A83A-4007-85E9-F16A167A51C8",
       "parameters": {
-        "format": "NDnd",
         "defaultFormat": "D"
       }
     },
