@@ -3,13 +3,6 @@
   "icon": "ProfilePic.jpg",
   "symbolInfo": [
     {
-      "id": "AuthorName",
-      "name": {
-        "text": "Author Name"
-      },
-      "isVisible": "true"
-    },
-    {
       "id": "LoggingProvider",
       "name": {
         "text": "Logging Provider"

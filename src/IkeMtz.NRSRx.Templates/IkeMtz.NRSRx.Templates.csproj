@@ -43,4 +43,8 @@
     <Content Include="**\*" Exclude="**\bin\**\*;**\obj\**\*;**\.vs\**\*" />
     <Compile Remove="**\*" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <None Remove="OData\.Dockerfile" />
+  </ItemGroup>
 </Project>
