@@ -1,0 +1,74 @@
+name: 6.0.$(DayOfYear)$(Rev:.rr)
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  PACKAGE_PROJECTS: 'src/**/IkeMtz.NRSRx.Templates.csproj'
+  BUILDCONFIGURATION: 'Debug'
+
+jobs:
+- job: APIs
+  displayName: Build and test API code
+  pool:
+    vmImage: 'windows-latest'
+
+  steps:
+  - checkout: self
+    persistCredentials: true
+
+  - task: UseDotNet@2
+    displayName: 'Use .NET Core sdk 6.0.x'
+    inputs:
+      version: 6.0.x
+
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: 'export DOTNET_ENVIRONMENT=Development && export ASPNETCORE_ENVIRONMENT=Development'
+
+  - task: Assembly-Info-NetCore@2
+    displayName: 'Set Assembly Manifest Data'
+    inputs:  
+      InsertAttributes: true
+      VersionNumber: '$(Build.BuildNumber)'
+      FileVersionNumber: '$(Build.BuildNumber)'
+      InformationalVersion: '$(Build.BuildNumber)'
+      PackageVersion: '$(Build.BuildNumber)'
+
+  - task: DotNetCoreCLI@2
+    displayName: Pack Symbols
+    inputs:
+      command: 'pack'
+      packagesToPack: '$(PACKAGE_PROJECTS)'
+      configuration: 'Debug'
+      nobuild: true
+      includesymbols: true
+      includesource: true
+      versioningScheme: byBuildNumber
+      buildProperties: 'version-suffix=symbols'
+      verbosityPack: 'Minimal'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact'
+    inputs:
+      ArtifactName: 'symbol_drop'
+
+  - task: GitTag@5
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    inputs:
+      workingdir: '$(SYSTEM.DEFAULTWORKINGDIRECTORY)'
+      tagUser: 'ikemtz'
+      tagEmail: 'ikemtz@outlook.com'
+      tag: 'nrsrx-templates-$(build.buildNumber)'
+      tagMessage: 'nrsrx-templates-$(build.buildNumber)'
+      useLightweightTags: true
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+pr:
+  branches:
+    include:
+      - master
