@@ -7,8 +7,8 @@ variables:
   BUILDCONFIGURATION: 'Debug'
 
 jobs:
-- job: APIs
-  displayName: Build and test API code
+- job: template
+  displayName: Package template code
   pool:
     vmImage: 'windows-latest'
 
@@ -42,10 +42,9 @@ jobs:
       packagesToPack: '$(PACKAGE_PROJECTS)'
       configuration: 'Debug'
       nobuild: true
-      includesymbols: true
+      includesymbols: false
       includesource: true
       versioningScheme: byBuildNumber
-      buildProperties: 'version-suffix=symbols'
       verbosityPack: 'Minimal'
 
   - task: PublishBuildArtifacts@1
