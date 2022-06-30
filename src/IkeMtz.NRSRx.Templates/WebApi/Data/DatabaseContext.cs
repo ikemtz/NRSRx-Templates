@@ -1,7 +1,6 @@
 using IkeMtz.NRSRx.Core.EntityFramework;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using V1 = NRSRx_ServiceName.Models.V1;
 
 namespace NRSRx_ServiceName.Data
 {
@@ -11,7 +10,5 @@ namespace NRSRx_ServiceName.Data
         : base(options, httpContextAccessor)
     {
     }
-
-    public virtual DbSet<V1.Item> Items { get; set; }
   }
 }

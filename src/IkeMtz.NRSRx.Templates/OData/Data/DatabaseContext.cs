@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using V1 = NRSRx_ServiceName.Models.V1;
 
 namespace NRSRx_ServiceName.Data
 {
@@ -9,7 +8,5 @@ namespace NRSRx_ServiceName.Data
         : base(options)
     {
     }
-
-    public virtual DbSet<V1.Item> Items { get; set; } 
   }
 }
