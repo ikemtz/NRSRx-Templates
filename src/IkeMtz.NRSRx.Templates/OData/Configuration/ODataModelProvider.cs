@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using IkeMtz.NRSRx.Core.OData;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.OData.Edm;
-using V1 = NRSRx_OData.Models.V1;
+using V1 = NRSRx_ServiceName.Models.V1;
 
 namespace NRSRx_OData.Configuration
 {
