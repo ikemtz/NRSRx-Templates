@@ -13,6 +13,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{091A83D0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.Templates", "src\IkeMtz.NRSRx.Templates\IkeMtz.NRSRx.Templates.csproj", "{7BC371F4-D8AD-4595-8BFE-EFAE7F3163A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IkeMtz.NRSRx.Extensions", "src\IkeMtz.NRSRx.Extensions\IkeMtz.NRSRx.Extensions.csproj", "{C385F32D-954A-46B5-A56E-B0F9DD23C1FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IkeMtz.NRSRx.Project.Template", "src\IkeMtz.NRSRx.Project.Template\IkeMtz.NRSRx.Project.Template.csproj", "{049E63FD-8005-4035-ADFF-0CCB6209C439}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,22 @@ Global
 		{7BC371F4-D8AD-4595-8BFE-EFAE7F3163A5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7BC371F4-D8AD-4595-8BFE-EFAE7F3163A5}.Release|x86.ActiveCfg = Release|Any CPU
 		{7BC371F4-D8AD-4595-8BFE-EFAE7F3163A5}.Release|x86.Build.0 = Release|Any CPU
+		{C385F32D-954A-46B5-A56E-B0F9DD23C1FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C385F32D-954A-46B5-A56E-B0F9DD23C1FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C385F32D-954A-46B5-A56E-B0F9DD23C1FD}.Debug|x86.ActiveCfg = Debug|x86
+		{C385F32D-954A-46B5-A56E-B0F9DD23C1FD}.Debug|x86.Build.0 = Debug|x86
+		{C385F32D-954A-46B5-A56E-B0F9DD23C1FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C385F32D-954A-46B5-A56E-B0F9DD23C1FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C385F32D-954A-46B5-A56E-B0F9DD23C1FD}.Release|x86.ActiveCfg = Release|x86
+		{C385F32D-954A-46B5-A56E-B0F9DD23C1FD}.Release|x86.Build.0 = Release|x86
+		{049E63FD-8005-4035-ADFF-0CCB6209C439}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{049E63FD-8005-4035-ADFF-0CCB6209C439}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{049E63FD-8005-4035-ADFF-0CCB6209C439}.Debug|x86.ActiveCfg = Debug|x86
+		{049E63FD-8005-4035-ADFF-0CCB6209C439}.Debug|x86.Build.0 = Debug|x86
+		{049E63FD-8005-4035-ADFF-0CCB6209C439}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{049E63FD-8005-4035-ADFF-0CCB6209C439}.Release|Any CPU.Build.0 = Release|Any CPU
+		{049E63FD-8005-4035-ADFF-0CCB6209C439}.Release|x86.ActiveCfg = Release|x86
+		{049E63FD-8005-4035-ADFF-0CCB6209C439}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

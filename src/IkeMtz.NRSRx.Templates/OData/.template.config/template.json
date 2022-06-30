@@ -5,7 +5,7 @@
   "name": "NRSRx OData",
   "shortName": "nrsrx-odata",
   "defaultName": "My.NRSRx.OData",
-  "groupIdentity": "IkeMtz.NRSRx.OData",
+  "groupIdentity": "IkeMtz.NRSRx",
   "identity": "IkeMtz.NRSRx.OData",
   "description": "A template to spin up a new NRSRx OData service.",
   "tags": {

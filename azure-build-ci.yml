@@ -3,7 +3,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  ALL_PROJECTS: '**/*.csproj'
+  ALL_PROJECTS: 'src/IkeMtz.NRSRx.Templates/**/*.csproj'
   PACKAGE_PROJECTS: 'src/**/IkeMtz.NRSRx.Templates.csproj'
   BUILDCONFIGURATION: 'Debug'
 
