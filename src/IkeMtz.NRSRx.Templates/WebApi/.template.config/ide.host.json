@@ -17,6 +17,13 @@
         "text": "Database Provider"
       },
       "isVisible": true
+    },
+    {
+      "id": "EventingProvider",
+      "name": {
+        "text": "Eventing Provider"
+      },
+      "isVisible": true
     }
   ]
 }
