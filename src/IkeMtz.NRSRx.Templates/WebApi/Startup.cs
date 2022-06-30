@@ -62,10 +62,18 @@ namespace NRSRx_WebApi
     }
 #endif
 
-#if (HasDb)
+#if (HasDb || HasEventing)
     public override void SetupHealthChecks(IServiceCollection services, IHealthChecksBuilder healthChecks)
     {
-      _ = healthChecks.AddDbContextCheck<DatabaseContext>();
+      _ = healthChecks
+#if (HasDb && Redis)
+        .AddDbContextCheck<DatabaseContext>()
+        .AddRedis<DatabaseContext>(Configuration.GetValue<string>("REDIS_CONNECTION_STRING"));
+#elseif (HasDb)
+        .AddDbContextCheck<DatabaseContext>();
+#elseif (Redis)
+        .AddRedis<DatabaseContext>(Configuration.GetValue<string>("REDIS_CONNECTION_STRING"));
+#endif
     }
 #endif
 

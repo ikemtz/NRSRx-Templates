@@ -25,15 +25,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.OData" Version="6.0.180.3" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.OData" Version="6.0.181.2" />
     <!--#if (ApplicationInsights) -->
-    <PackageReference Include="IkeMtz.NRSRx.Logging.ApplicationInsights" Version="6.0.180.3" />
+    <PackageReference Include="IkeMtz.NRSRx.Logging.ApplicationInsights" Version="6.0.181.2" />
     <!--#endif -->
     <!--#if (Elasticsearch) -->
-    <PackageReference Include="IkeMtz.NRSRx.Logging.Elasticsearch" Version="6.0.180.3" />
+    <PackageReference Include="IkeMtz.NRSRx.Logging.Elasticsearch" Version="6.0.181.2" />
     <!--#endif -->
     <!--#if (Splunk) -->
-    <PackageReference Include="IkeMtz.NRSRx.Logging.Splunk" Version="6.0.180.3" />
+    <PackageReference Include="IkeMtz.NRSRx.Logging.Splunk" Version="6.0.181.2" />
     <!--#endif -->
     <!--#if (MsSql) -->
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
