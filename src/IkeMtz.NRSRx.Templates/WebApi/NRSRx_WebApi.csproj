@@ -45,7 +45,7 @@
     <PackageReference Include="IkeMtz.NRSRx.Events.Publishers.Redis" Version="6.0.180.3" />
     <!--#endif -->
     <!--#if (ServiceBus) -->
-    <ProjectReference Include="IkeMtz.NRSRx.Events.Publishers.ServiceBus" />
+    <PackageReference Include="IkeMtz.NRSRx.Events.Publishers.ServiceBus" Version="6.0.180.3" />
     <!--#endif -->
   </ItemGroup>
 </Project>
