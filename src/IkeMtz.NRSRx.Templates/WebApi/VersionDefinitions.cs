@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using IkeMtz.NRSRx.Core.Web;
 
-namespace IkeMtz.Samples.WebApi
+namespace NRSRx_WebApi
 {
   public class VersionDefinitions : IApiVersionDefinitions
   {

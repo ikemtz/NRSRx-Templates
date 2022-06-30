@@ -14,6 +14,20 @@
   },
   "sourceName": "NRSRx_WebApi",
   "preferNameDirectory": true,
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(!HasDb)",
+          "exclude": ["Data/*"]
+        },
+        {
+          "condition": "(!HasEventing)",
+          "exclude": ["Publishers/*"]
+        }
+      ]
+    }
+  ],
   "symbols": {
     "Framework": {
       "type": "parameter",
@@ -101,7 +115,7 @@
         {
           "choice": "MsSql",
           "displayName": "MS SQL Server",
-          "description": "Use a Microsoft SQL database"
+          "description": "Use a Microsoft SQL Server database"
         },
         {
           "choice": "MySql",
@@ -117,6 +131,29 @@
       "defaultValue": "MsSql",
       "description": "The type of database that will be used."
     },
+    "EventingProvider": {
+      "type": "parameter",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "Redis",
+          "displayName": "Redis Streams",
+          "description": "Leverage Redis Streams for pub/sub"
+        },
+        {
+          "choice": "ServiceBus",
+          "displayName": "Azure ServiceBus",
+          "description": "Leverage Azure ServiceBus for pub/sub"
+        }, 
+        {
+          "choice": "NoEvents",
+          "description": "No Eventing will be used",
+          "displayName": "No Eventing"
+        }
+      ],
+      "defaultValue": "ServiceBus",
+      "description": "The type of eventing provider that will be used."
+    },
     "ApplicationInsights": {
       "type": "computed",
       "value": "(LoggingProvider == \"ApplicationInsights\")"
@@ -131,7 +168,7 @@
     },
     "HasLogging": {
       "type": "computed",
-      "value": "(DatabaseProvider != \"NoLogging\")"
+      "value": "(LoggingProvider != \"NoLogging\")"
     },
     "MsSql": {
       "type": "computed",
@@ -144,6 +181,18 @@
     "HasDb": {
       "type": "computed",
       "value": "(DatabaseProvider != \"NoDb\")"
+    },
+    "Redis": {
+      "type": "computed",
+      "value": "(EventingProvider == \"Redis\")"
+    },
+    "ServiceBus": {
+      "type": "computed",
+      "value": "(EventingProvider == \"ServiceBus\")"
+    },
+    "HasEventing": {
+      "type": "computed",
+      "value": "(EventingProvider != \"NoEvents\")"
     }
   }
 }
