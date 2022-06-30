@@ -11,6 +11,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using NRSRx_WebApi.Data;
 #endif
+#if (HasEventing)
+using IkeMtz.NRSRx.Events;
+using NRSRx_WebApi.Publishers;
+#endif
+#if (Redis)
+using StackExchange.Redis;
+#endif
 
 namespace NRSRx_WebApi
 {
@@ -59,6 +66,18 @@ namespace NRSRx_WebApi
     public override void SetupHealthChecks(IServiceCollection services, IHealthChecksBuilder healthChecks)
     {
       _ = healthChecks.AddDbContextCheck<DatabaseContext>();
+    }
+#endif
+
+#if (Redis)
+    [ExcludeFromCodeCoverage]
+    public override void SetupPublishers(IServiceCollection services)
+    {
+      var redisConnectionString = Configuration.GetValue<string>("REDIS_CONNECTION_STRING");
+      var connectionMultiplexer = ConnectionMultiplexer.Connect(redisConnectionString);
+      _ = services.AddSingleton<ISimplePublisher<Item, CreatedEvent, RedisValue>>((x) => new ItemCreatedPublisher(connectionMultiplexer));
+      _ = services.AddSingleton<ISimplePublisher<Item, UpdatedEvent, RedisValue>>((x) => new ItemUpdatedPublisher(connectionMultiplexer));
+      _ = services.AddSingleton<ISimplePublisher<Item, DeletedEvent, RedisValue>>((x) => new ItemDeletedPublisher(connectionMultiplexer));
     }
 #endif
   }

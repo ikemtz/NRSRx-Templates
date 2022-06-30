@@ -20,6 +20,10 @@
         {
           "condition": "(!HasDb)",
           "exclude": ["Data/*"]
+        },
+        {
+          "condition": "(!HasEventing)",
+          "exclude": ["Publishers/*"]
         }
       ]
     }

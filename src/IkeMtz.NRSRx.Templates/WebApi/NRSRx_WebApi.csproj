@@ -41,5 +41,11 @@
     <PackageReference Include="IkeMtz.NRSRx.Core.EntityFramework" Version="6.0.180.3" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="6.0.6" />
     <!--#endif -->
+    <!--#if (Redis) -->
+    <PackageReference Include="IkeMtz.NRSRx.Events.Publishers.Redis" Version="6.0.180.3" />
+    <!--#endif -->
+    <!--#if (ServiceBus) -->
+    <ProjectReference Include="IkeMtz.NRSRx.Events.Publishers.ServiceBus" />
+    <!--#endif -->
   </ItemGroup>
 </Project>
