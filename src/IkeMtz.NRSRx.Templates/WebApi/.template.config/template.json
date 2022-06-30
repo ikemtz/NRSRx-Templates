@@ -1,18 +1,18 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "@ikemtz",
-  "classifications": ["NRSRx", "Service", "OData", "Web"],
-  "name": "NRSRx OData",
-  "shortName": "nrsrx-odata",
-  "defaultName": "My.NRSRx.OData",
-  "groupIdentity": "IkeMtz.NRSRx.OData",
-  "identity": "IkeMtz.NRSRx.OData",
-  "description": "A template to spin up a new NRSRx OData service.",
+  "classifications": ["NRSRx", "Service", "WebApi", "Web"],
+  "name": "NRSRx WebApi",
+  "shortName": "nrsrx-webapi",
+  "defaultName": "My.NRSRx.WebApi",
+  "identity": "IkeMtz.NRSRx.WebApi",
+  "groupIdentity": "IkeMtz.NRSRx.WebApi",
+  "description": "A template to spin up a new NRSRx WebApi service.",
   "tags": {
     "language": "C#",
     "type": "project"
   },
-  "sourceName": "NRSRx_OData",
+  "sourceName": "NRSRx_WebApi",
   "preferNameDirectory": true,
   "symbols": {
     "Framework": {
@@ -84,6 +84,11 @@
           "choice": "Elasticsearch",
           "description": "Leverage Elasticsearch logging via SeriLog",
           "displayName": "Elasticsearch"
+        },
+        {
+          "choice": "NoLogging",
+          "description": "No logging will be used",
+          "displayName": "No Logging"
         }
       ],
       "defaultValue": "ApplicationInsights",
@@ -102,6 +107,11 @@
           "choice": "MySql",
           "displayName": "MySql Server",
           "description": "Use a MySql database"
+        },
+        {
+          "choice": "NoDb",
+          "displayName": "No Database",
+          "description": "This WebApi will not have a persisted state"
         }
       ],
       "defaultValue": "MsSql",
@@ -130,6 +140,10 @@
     "MySql": {
       "type": "computed",
       "value": "(DatabaseProvider == \"MySql\")"
+    },
+    "HasDb": {
+      "type": "computed",
+      "value": "(DatabaseProvider != \"NoDb\")"
     }
   }
 }
