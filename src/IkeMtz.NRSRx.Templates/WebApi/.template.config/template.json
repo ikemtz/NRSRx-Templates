@@ -14,6 +14,16 @@
   },
   "sourceName": "NRSRx_WebApi",
   "preferNameDirectory": true,
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(!HasDb)",
+          "exclude": ["Data/*"]
+        }
+      ]
+    }
+  ],
   "symbols": {
     "Framework": {
       "type": "parameter",
@@ -101,7 +111,7 @@
         {
           "choice": "MsSql",
           "displayName": "MS SQL Server",
-          "description": "Use a Microsoft SQL database"
+          "description": "Use a Microsoft SQL Server database"
         },
         {
           "choice": "MySql",
@@ -131,7 +141,7 @@
     },
     "HasLogging": {
       "type": "computed",
-      "value": "(DatabaseProvider != \"NoLogging\")"
+      "value": "(LoggingProvider != \"NoLogging\")"
     },
     "MsSql": {
       "type": "computed",

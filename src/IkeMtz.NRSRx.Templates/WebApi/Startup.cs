@@ -4,11 +4,13 @@ using System.Reflection;
 using IkeMtz.NRSRx.Core.Web;
 using IkeMtz.NRSRx.Core.WebApi;
 using NRSRx_WebApi.Models.V1;
-using NRSRx_WebApi.Data;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+#if (HasDb)
+using Microsoft.EntityFrameworkCore;
+using NRSRx_WebApi.Data;
+#endif
 
 namespace NRSRx_WebApi
 {
