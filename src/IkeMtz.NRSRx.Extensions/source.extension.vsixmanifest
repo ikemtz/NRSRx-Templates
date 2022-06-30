@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+    <Metadata>
+        <Identity Id="NRSRx_Extensions.2a7b0ead-ec1d-4a60-b656-a831eea186c4_1.2" Version="2.0.6" Language="en-US" Publisher="IkeMtz" />
+        <DisplayName>NRSRx Project Templates</DisplayName>
+        <Description xml:space="preserve">NRSRx based project templates.  NRSRx streamlines building OData and WebApi services.  This is the simplest way of getting started with the NRSRx framework.
+
+The full source code for this extension can be found here:
+https://github.com/ikemtz/NRSRx-Templates</Description>
+        <MoreInfo>https://github.com/ikemtz/NRSRx</MoreInfo>
+        <License>LICENSE.txt</License>
+        <Icon>icon.png</Icon>
+        <Tags>NRSRx, OData, OpenAPI, WebApi</Tags>
+    </Metadata>
+    <Installation>
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
+            <ProductArchitecture>amd64</ProductArchitecture>
+        </InstallationTarget>
+    </Installation>
+    <Dependencies>
+        <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+    </Dependencies>
+    <Prerequisites>
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,18.0)" DisplayName="Visual Studio core editor" />
+    </Prerequisites>
+    <Assets>
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="File" Path="TemplatePack.pkgdef" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="IkeMtz.NRSRx.Project.Template" d:TargetPath="|IkeMtz.NRSRx.Project.Template;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+    </Assets>
+</PackageManifest>

@@ -1,12 +1,12 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "@ikemtz",
-  "classifications": ["NRSRx", "Service", "WebApi", "Web"],
+  "classifications": [ "NRSRx", "Service", "WebApi", "Web" ],
   "name": "NRSRx WebApi",
   "shortName": "nrsrx-webapi",
   "defaultName": "My.NRSRx.WebApi",
   "identity": "IkeMtz.NRSRx.WebApi",
-  "groupIdentity": "IkeMtz.NRSRx.WebApi",
+  "groupIdentity": "IkeMtz.NRSRx",
   "description": "A template to spin up a new NRSRx WebApi service.",
   "tags": {
     "language": "C#",
@@ -19,11 +19,11 @@
       "modifiers": [
         {
           "condition": "(!HasDb)",
-          "exclude": ["Data/*"]
+          "exclude": [ "Data/*" ]
         },
         {
           "condition": "(!HasEventing)",
-          "exclude": ["Publishers/*"]
+          "exclude": [ "Publishers/*" ]
         }
       ]
     }
@@ -144,7 +144,7 @@
           "choice": "ServiceBus",
           "displayName": "Azure ServiceBus",
           "description": "Leverage Azure ServiceBus for pub/sub"
-        }, 
+        },
         {
           "choice": "NoEvents",
           "description": "No Eventing will be used",
