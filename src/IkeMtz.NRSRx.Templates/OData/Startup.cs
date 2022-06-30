@@ -3,9 +3,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using IkeMtz.NRSRx.Core.OData;
 using IkeMtz.NRSRx.Core.Web;
-using NRSRx_OData.Models.V1;
+using NRSRx_ServiceName.Models.V1;
+using NRSRx_ServiceName.Data;
 using NRSRx_OData.Configuration;
-using NRSRx_OData.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,7 +15,7 @@ namespace NRSRx_OData
 {
   public class Startup : CoreODataStartup
   {
-    public override string MicroServiceTitle => $"{nameof(NRSRx_OData)} OData Microservice";
+    public override string MicroServiceTitle => $"{nameof(NRSRx_ServiceName)} OData Microservice";
     public override Assembly StartupAssembly => typeof(Startup).Assembly;
     public override bool IncludeXmlCommentsInSwaggerDocs => true;
     public override string[] AdditionalAssemblyXmlDocumentFiles => new[] {

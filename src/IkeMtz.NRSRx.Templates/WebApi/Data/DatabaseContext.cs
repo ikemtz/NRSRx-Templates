@@ -1,9 +1,9 @@
 using IkeMtz.NRSRx.Core.EntityFramework;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using V1 = NRSRx_WebApi.Models.V1;
+using V1 = NRSRx_ServiceName.Models.V1;
 
-namespace NRSRx_WebApi.Data
+namespace NRSRx_ServiceName.Data
 {
   public partial class DatabaseContext : AuditableDbContext
   {

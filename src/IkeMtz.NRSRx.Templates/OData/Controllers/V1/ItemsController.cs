@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Microsoft.EntityFrameworkCore;
-using NRSRx_OData.Data;
-using NRSRx_OData.Models.V1;
+using NRSRx_ServiceName.Data;
+using NRSRx_ServiceName.Models.V1;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace NRSRx_OData.Controllers.V1

@@ -193,6 +193,21 @@
     "HasEventing": {
       "type": "computed",
       "value": "(EventingProvider != \"NoEvents\")"
+    },
+    "ServiceName": {
+      "type": "generated",
+      "generator": "regex",
+      "dataType": "string",
+      "replaces": "NRSRx_ServiceName",
+      "parameters": {
+        "source": "name",
+        "steps": [
+          {
+            "regex": ".WebApi.*$",
+            "replacement": ""
+          }
+        ]
+      }
     }
   }
 }

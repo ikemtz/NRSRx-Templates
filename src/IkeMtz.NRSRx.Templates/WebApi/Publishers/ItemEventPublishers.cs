@@ -3,7 +3,7 @@ using IkeMtz.NRSRx.Events;
 using IkeMtz.NRSRx.Events.Publishers.Redis;
 using StackExchange.Redis;
 #endif
-using NRSRx_WebApi.Models.V1;
+using NRSRx_ServiceName.Models.V1;
 
 namespace NRSRx_WebApi.Publishers
 {

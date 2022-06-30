@@ -3,13 +3,13 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using IkeMtz.NRSRx.Core.Web;
 using IkeMtz.NRSRx.Core.WebApi;
-using NRSRx_WebApi.Models.V1;
+using NRSRx_ServiceName.Models.V1;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 #if (HasDb)
 using Microsoft.EntityFrameworkCore;
-using NRSRx_WebApi.Data;
+using NRSRx_ServiceName.Data;
 #endif
 #if (HasEventing)
 using IkeMtz.NRSRx.Events;
@@ -23,7 +23,7 @@ namespace NRSRx_WebApi
 {
   public class Startup : CoreWebApiStartup
   {
-    public override string MicroServiceTitle => $"{nameof(NRSRx_WebApi)} WebApi Microservice";
+    public override string MicroServiceTitle => $"{nameof(NRSRx_ServiceName)} WebApi Microservice";
     public override Assembly StartupAssembly => typeof(Startup).Assembly;
     public override bool IncludeXmlCommentsInSwaggerDocs => true;
     public override string[] AdditionalAssemblyXmlDocumentFiles => new[] {
@@ -68,11 +68,11 @@ namespace NRSRx_WebApi
       _ = healthChecks
 #if (HasDb && Redis)
         .AddDbContextCheck<DatabaseContext>()
-        .AddRedis<DatabaseContext>(Configuration.GetValue<string>("REDIS_CONNECTION_STRING"));
+        .AddRedis(Configuration.GetValue<string>("REDIS_CONNECTION_STRING"));
 #elseif (HasDb)
         .AddDbContextCheck<DatabaseContext>();
 #elseif (Redis)
-        .AddRedis<DatabaseContext>(Configuration.GetValue<string>("REDIS_CONNECTION_STRING"));
+        .AddRedis(Configuration.GetValue<string>("REDIS_CONNECTION_STRING"));
 #endif
     }
 #endif

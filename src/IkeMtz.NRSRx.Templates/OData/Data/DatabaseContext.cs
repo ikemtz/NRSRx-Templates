@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using V1 = NRSRx_OData.Models.V1;
+using V1 = NRSRx_ServiceName.Models.V1;
 
-namespace NRSRx_OData.Data
+namespace NRSRx_ServiceName.Data
 {
   public partial class DatabaseContext : DbContext
   {

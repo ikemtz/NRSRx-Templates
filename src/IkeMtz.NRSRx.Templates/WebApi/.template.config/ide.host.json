@@ -25,6 +25,10 @@
         "text": "Eventing Provider"
       },
       "isVisible": true
+    },
+    {
+      "id": "HttpPort",
+      "isVisible": false
     }
   ]
 }

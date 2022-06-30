@@ -130,6 +130,21 @@
     "MySql": {
       "type": "computed",
       "value": "(DatabaseProvider == \"MySql\")"
+    },
+    "ServiceName": {
+      "type": "generated",
+      "generator": "regex",
+      "dataType": "string",
+      "replaces": "NRSRx_ServiceName",
+      "parameters": {
+        "source": "name",
+        "steps": [
+          {
+            "regex": ".OData.*$",
+            "replacement": ""
+          }
+        ]
+      }
     }
   }
 }

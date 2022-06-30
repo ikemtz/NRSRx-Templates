@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 #if (HasDb)
 using Microsoft.EntityFrameworkCore;
-using NRSRx_WebApi.Data;
+using NRSRx_ServiceName.Data;
 #endif
 #if (HasEventing)
 using IkeMtz.NRSRx.Events;
@@ -14,7 +14,7 @@ using IkeMtz.NRSRx.Events;
 #if (Redis)
 using IkeMtz.NRSRx.Events.Publishers.Redis;
 #endif
-using NRSRx_WebApi.Models.V1;
+using NRSRx_ServiceName.Models.V1;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace NRSRx_WebApi.Controllers.V1
