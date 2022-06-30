@@ -16,12 +16,13 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/ikemtz/NRSRx-Templates</PackageProjectUrl>
-    <PackageIcon>ProfilePic.jpg</PackageIcon>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/ikemtz/NRSRx_Templates.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>.NET OData NRSRx</PackageTags>
     <PackageReleaseNotes>https://github.com/Dotnet-Boxed/Templates/releases</PackageReleaseNotes>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,7 +34,7 @@
 
   <ItemGroup>
     <None Include="LICENSE.txt" Pack="true" PackagePath="" />
-    <None Update="ProfilePic.jpg">
+    <None Update="icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
