@@ -1,7 +1,7 @@
 using IkeMtz.NRSRx.Core.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace NRSRx_OData.Models.V1
+namespace NRSRx_WebApi.Models.V1
 {
 
     public partial class Item : IIdentifiable<Guid>, IAuditable

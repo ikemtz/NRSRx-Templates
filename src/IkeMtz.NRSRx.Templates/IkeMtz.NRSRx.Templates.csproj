@@ -46,5 +46,6 @@
   
   <ItemGroup>
     <None Remove="OData\.Dockerfile" />
+    <None Remove="WebApi\.Dockerfile" />
   </ItemGroup>
 </Project>

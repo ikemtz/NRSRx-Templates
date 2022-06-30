@@ -3,7 +3,7 @@
   "icon": "ProfilePic.jpg",
   "defaultSymbolVisibility": true,
   "supportsDocker": true,
-  "order": 1,
+  "order": 0,
   "symbolInfo": [
     {
       "id": "LoggingProvider",
