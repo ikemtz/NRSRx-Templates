@@ -6,7 +6,7 @@
   "shortName": "nrsrx-webapi",
   "defaultName": "My.NRSRx.WebApi",
   "identity": "IkeMtz.NRSRx.WebApi",
-  "groupIdentity": "IkeMtz.NRSRx",
+  "groupIdentity": "IkeMtz.NRSRx.WebApi",
   "description": "A template to spin up a new NRSRx WebApi service.",
   "tags": {
     "language": "C#",
