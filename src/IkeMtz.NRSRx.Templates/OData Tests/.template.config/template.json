@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "@ikemtz",
+  "classifications": ["NRSRx", "Service", "OData", "Web", "Tests"],
+  "name": "NRSRx OData Tests",
+  "shortName": "nrsrx-odata-tests",
+  "defaultName": "My.NRSRx.OData.Tests",
+  "groupIdentity": "IkeMtz.NRSRx.OData.Tests",
+  "identity": "IkeMtz.NRSRx.OData.Tests",
+  "description": "A template to create a test project for a new NRSRx OData service.",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "NRSRx_OData_Tests",
+  "preferNameDirectory": true,
+  "guids": [
+    "98048C9C-BF28-46BA-A98E-63767EE5E3A8"
+  ],
+  "sources": [
+    {
+      "modifiers": [
+      ]
+    }
+  ],
+  "symbols": {
+    "Framework": {
+      "type": "parameter",
+      "description": "The target framework for the project.",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "net6.0",
+          "description": "Target netcoreapp6.0"
+        }
+      ],
+      "replaces": "net6.0",
+      "defaultValue": "net6.0"
+    },
+    "EntityName": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Name of initial entity.",
+      "replaces": "ItemModel",
+      "defaultValue": "Item",
+      "fileRename": "ItemModel"
+    },
+    "SkipModelGeneration": {
+      "type": "parameter",
+      "datatype": "bool",
+      "description": "Skip model generation.", 
+      "defaultValue": "false"
+    },
+    "ServiceName": {
+      "type": "generated",
+      "generator": "regex",
+      "dataType": "string",
+      "replaces": "NRSRx_ServiceName",
+      "parameters": {
+        "source": "name",
+        "steps": [
+          {
+            "regex": ".OData.*$",
+            "replacement": ""
+          },
+          {
+            "regex": ".Tests?$",
+            "replacement": ""
+          }
+        ]
+      }
+    }
+  }
+}

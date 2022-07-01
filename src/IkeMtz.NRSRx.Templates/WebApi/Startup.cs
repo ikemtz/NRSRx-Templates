@@ -48,6 +48,7 @@ namespace NRSRx_WebApi
 #endif
 
 #if (HasLogging)
+    [ExcludeFromCodeCoverage]
     public override void SetupLogging(IServiceCollection? services = null, IApplicationBuilder? app = null)
     {
 #if (ApplicationInsights)

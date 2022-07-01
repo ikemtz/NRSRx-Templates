@@ -2,21 +2,46 @@
 rm -r ./tests
 
 #MySql OData
-dotnet new nrsrx-odata -n My.NRSRx.OData1 -L Elasticsearch -D MySql -o ./tests/My.NRSRx.OData1 --force
-dotnet build ./tests/My.NRSRx.OData1
+dotnet new nrsrx-odata -n My.NRSRx1.OData -L Elasticsearch -D MySql -o ./tests/My.NRSRx1.OData --force
+dotnet build ./tests/My.NRSRx1.OData
 
-dotnet new nrsrx-odata -n My.NRSRx.OData2 -L Splunk -D MySql -o ./tests/My.NRSRx.OData2 --force
-dotnet build ./tests/My.NRSRx.OData2
+dotnet new nrsrx-odata -n My.NRSRx2.OData -L Splunk -D MySql -o ./tests/My.NRSRx2.OData --force
+dotnet build ./tests/My.NRSRx2.OData
 
-dotnet new nrsrx-odata -n My.NRSRx.OData3 -L ApplicationInsights -D MySql -o ./tests/My.NRSRx.OData3 --force
-dotnet build ./tests/My.NRSRx.OData3
+dotnet new nrsrx-odata -n My.NRSRx3.OData -L ApplicationInsights -D MySql -o ./tests/My.NRSRx3.OData --force
+dotnet build ./tests/My.NRSRx3.OData
 
 #MsSql OData
-dotnet new nrsrx-odata -n My.NRSRx.OData4 -L Elasticsearch -D MsSql -o ./tests/My.NRSRx.OData4 --force
-dotnet build ./tests/My.NRSRx.OData4
+dotnet new nrsrx-odata -n My.NRSRx4.OData -L Elasticsearch -D MsSql -o ./tests/My.NRSRx4.OData --force
+dotnet build ./tests/My.NRSRx4.OData
 
-dotnet new nrsrx-odata -n My.NRSRx.OData5 -L Splunk -D MsSql -o ./tests/My.NRSRx.OData5 --force
-dotnet build ./tests/My.NRSRx.OData5
+dotnet new nrsrx-odata -n My.NRSRx5.OData -L Splunk -D MsSql -o ./tests/My.NRSRx5.OData --force
+dotnet build ./tests/My.NRSRx5.OData
 
-dotnet new nrsrx-odata -n My.NRSRx.OData6 -L ApplicationInsights -D MsSql -o ./tests/My.NRSRx.OData6 --force
-dotnet build ./tests/My.NRSRx.OData6
+dotnet new nrsrx-odata -n My.NRSRx6.OData -L ApplicationInsights -D MsSql -o ./tests/My.NRSRx6.OData --force
+dotnet build ./tests/My.NRSRx6.OData
+
+#MsSql OData Tests
+dotnet new nrsrx-odata-tests -n My.NRSRx1.OData.Tests -o ./tests/My.NRSRx1.OData.Tests --force
+dotnet build ./tests/My.NRSRx1.OData.Tests
+dotnet test ./tests/My.NRSRx1.OData.Tests --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
+
+dotnet new nrsrx-odata-tests -n My.NRSRx2.OData.Tests -o ./tests/My.NRSRx2.OData.Tests --force
+dotnet build ./tests/My.NRSRx2.OData.Tests
+dotnet test ./tests/My.NRSRx2.OData.Tests --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
+
+dotnet new nrsrx-odata-tests -n My.NRSRx3.OData.Tests -o ./tests/My.NRSRx3.OData.Tests --force
+dotnet build ./tests/My.NRSRx3.OData.Tests
+dotnet test ./tests/My.NRSRx3.OData.Tests --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
+
+dotnet new nrsrx-odata-tests -n My.NRSRx4.OData.Tests -o ./tests/My.NRSRx4.OData.Tests --force
+dotnet build ./tests/My.NRSRx4.OData.Tests
+dotnet test ./tests/My.NRSRx4.OData.Tests --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
+
+dotnet new nrsrx-odata-tests -n My.NRSRx5.OData.Tests -o ./tests/My.NRSRx5.OData.Tests --force
+dotnet build ./tests/My.NRSRx5.OData.Tests
+dotnet test ./tests/My.NRSRx5.OData.Tests --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
+
+dotnet new nrsrx-odata-tests -n My.NRSRx6.OData.Tests -o ./tests/My.NRSRx6.OData.Tests --force
+dotnet build ./tests/My.NRSRx6.OData.Tests
+dotnet test ./tests/My.NRSRx6.OData.Tests --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover

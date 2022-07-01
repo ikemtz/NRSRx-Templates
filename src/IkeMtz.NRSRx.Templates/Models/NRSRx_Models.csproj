@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ProjectGuid>{98048c9cbf2846baa98e63767ee5e3a8}</ProjectGuid>
+    <ProjectGuid>98048c9cbf2846baa98e63767ee5e3a8</ProjectGuid>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <OutputType>Library</OutputType>
@@ -25,6 +25,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="6.0.181.4" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="6.0.182.4" />
   </ItemGroup>
 </Project>
