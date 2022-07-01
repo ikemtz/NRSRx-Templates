@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 rm -r ./tests
 
 #MySql OData
@@ -24,24 +25,24 @@ dotnet build ./tests/My.NRSRx6.OData
 #MsSql OData Tests
 dotnet new nrsrx-odata-tests -n My.NRSRx1.OData.Tests -o ./tests/My.NRSRx1.OData.Tests --force
 dotnet build ./tests/My.NRSRx1.OData.Tests
-dotnet test ./tests/My.NRSRx1.OData.Tests --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
+dotnet test ./tests/My.NRSRx1.OData.Tests --filter TestCategory=Unigration --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
 
 dotnet new nrsrx-odata-tests -n My.NRSRx2.OData.Tests -o ./tests/My.NRSRx2.OData.Tests --force
 dotnet build ./tests/My.NRSRx2.OData.Tests
-dotnet test ./tests/My.NRSRx2.OData.Tests --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
+dotnet test ./tests/My.NRSRx2.OData.Tests --filter TestCategory=Unigration --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
 
 dotnet new nrsrx-odata-tests -n My.NRSRx3.OData.Tests -o ./tests/My.NRSRx3.OData.Tests --force
 dotnet build ./tests/My.NRSRx3.OData.Tests
-dotnet test ./tests/My.NRSRx3.OData.Tests --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
+dotnet test ./tests/My.NRSRx3.OData.Tests --filter TestCategory=Unigration --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
 
 dotnet new nrsrx-odata-tests -n My.NRSRx4.OData.Tests -o ./tests/My.NRSRx4.OData.Tests --force
 dotnet build ./tests/My.NRSRx4.OData.Tests
-dotnet test ./tests/My.NRSRx4.OData.Tests --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
+dotnet test ./tests/My.NRSRx4.OData.Tests --filter TestCategory=Unigration --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
 
 dotnet new nrsrx-odata-tests -n My.NRSRx5.OData.Tests -o ./tests/My.NRSRx5.OData.Tests --force
 dotnet build ./tests/My.NRSRx5.OData.Tests
-dotnet test ./tests/My.NRSRx5.OData.Tests --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
+dotnet test ./tests/My.NRSRx5.OData.Tests --filter TestCategory=Unigration --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
 
 dotnet new nrsrx-odata-tests -n My.NRSRx6.OData.Tests -o ./tests/My.NRSRx6.OData.Tests --force
 dotnet build ./tests/My.NRSRx6.OData.Tests
-dotnet test ./tests/My.NRSRx6.OData.Tests --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
+dotnet test ./tests/My.NRSRx6.OData.Tests --filter TestCategory=Unigration --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
