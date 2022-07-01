@@ -51,6 +51,15 @@
       "description": "Skip model generation.", 
       "defaultValue": "false"
     },
+    "EntityNameLower":{
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source":"EntityName",
+        "toLower": true
+      },
+      "replaces":"itemName"
+    },
     "ServiceName": {
       "type": "generated",
       "generator": "regex",
