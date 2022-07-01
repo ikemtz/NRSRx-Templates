@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 echo --- Executing tests-models.sh ---
 /bin/bash -e ./tests-models.sh
 echo --- Executing tests-odata-skip-models-mssql.sh ---
