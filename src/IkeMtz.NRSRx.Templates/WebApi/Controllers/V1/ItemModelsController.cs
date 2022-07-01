@@ -26,43 +26,43 @@ namespace NRSRx_WebApi.Controllers.V1
   [ApiVersion(VersionDefinitions.v1_0)]
   [ApiController]
   [Authorize]
-  public class ItemsController : ControllerBase
+  public class ItemModelsController : ControllerBase
   {
 #if (HasLogging)
-    private readonly ILogger<ItemsController> _logger;
+    private readonly ILogger<ItemModelsController> _logger;
 #endif
 #if (HasDb)
     private readonly DatabaseContext _databaseContext;
 #endif
 #if (HasDb && HasLogging)
-    public ItemsController(DatabaseContext databaseContext, ILogger<ItemsController> logger)
+    public ItemModelsController(DatabaseContext databaseContext, ILogger<ItemModelsController> logger)
     {
       _databaseContext = databaseContext;
       _logger = logger;
     }
 #elseif (HasDb)
-    public ItemsController(DatabaseContext databaseContext)
+    public ItemModelsController(DatabaseContext databaseContext)
     {
       _databaseContext = databaseContext;
     }
 #elseif (HasLogging)
-    public ItemsController(ILogger<ItemsController> logger)
+    public ItemModelsController(ILogger<ItemModelsController> logger)
     {
       _logger = logger;
     }
 #else
-    public ItemsController()
+    public ItemModelsController()
     {
     }
 #endif
 
-    // Get api/Items
+    // Get api/ItemModels
     [HttpGet]
-    [ProducesResponseType(Status200OK, Type = typeof(Item))]
+    [ProducesResponseType(Status200OK, Type = typeof(ItemModel))]
     public async Task<ActionResult> Get([FromQuery] Guid id)
     {
 #if (HasDb)
-      var obj = await _databaseContext.Items
+      var obj = await _databaseContext.ItemModels
         .AsNoTracking()
         .FirstOrDefaultAsync(t => t.Id == id)
         .ConfigureAwait(false);
@@ -72,18 +72,18 @@ namespace NRSRx_WebApi.Controllers.V1
 #endif
     }
 
-    // Post api/Items
+    // Post api/ItemModels
     [HttpPost]
-    [ProducesResponseType(Status200OK, Type = typeof(Item))]
+    [ProducesResponseType(Status200OK, Type = typeof(ItemModel))]
     [ValidateModel]
 #if (Redis)
-    public async Task<ActionResult> Post([FromBody] Item value, [FromServices] RedisStreamPublisher<Item, CreatedEvent> publisher)
+    public async Task<ActionResult> Post([FromBody] ItemModel value, [FromServices] RedisStreamPublisher<ItemModel, CreatedEvent> publisher)
 #else
-    public async Task<ActionResult> Post([FromBody] Item value)
+    public async Task<ActionResult> Post([FromBody] ItemModel value)
 #endif
     {
 #if (HasDb && HasEventing)
-      var dbContextObject = _databaseContext.Items.Add(value);
+      var dbContextObject = _databaseContext.ItemModels.Add(value);
       var recordCount = await _databaseContext.SaveChangesAsync()
           .ConfigureAwait(false);
       if (recordCount == 1){
@@ -92,7 +92,7 @@ namespace NRSRx_WebApi.Controllers.V1
       }
       return Ok(dbContextObject.Entity);
 #elseif (HasDb)
-      var dbContextObject = _databaseContext.Items.Add(value);
+      var dbContextObject = _databaseContext.ItemModels.Add(value);
       _ = await _databaseContext.SaveChangesAsync()
           .ConfigureAwait(false);
       return Ok(dbContextObject.Entity);
@@ -105,16 +105,16 @@ namespace NRSRx_WebApi.Controllers.V1
 #endif
     }
 
-    // Put api/Items
+    // Put api/ItemModels
     [HttpPut]
-    [ProducesResponseType(Status200OK, Type = typeof(Item))]
+    [ProducesResponseType(Status200OK, Type = typeof(ItemModel))]
     [ProducesResponseType(Status409Conflict)]
     [ProducesResponseType(Status404NotFound)]
     [ValidateModel]
 #if (Redis)
-    public async Task<ActionResult> Put([FromQuery] Guid id, [FromBody] Item value, [FromServices] RedisStreamPublisher<Item, UpdatedEvent> publisher)
+    public async Task<ActionResult> Put([FromQuery] Guid id, [FromBody] ItemModel value, [FromServices] RedisStreamPublisher<ItemModel, UpdatedEvent> publisher)
 #else
-    public async Task<ActionResult> Put([FromQuery] Guid id, [FromBody] Item value)
+    public async Task<ActionResult> Put([FromQuery] Guid id, [FromBody] ItemModel value)
 #endif
     {
       if (id != value.Id)
@@ -125,16 +125,16 @@ namespace NRSRx_WebApi.Controllers.V1
         return Conflict($"Id values in query string and post data do not match.");
       }
 #if (HasDb && HasEventing)
-      var dbContextObject = await _databaseContext.Items.FirstOrDefaultAsync(t => t.Id == id)
+      var dbContextObject = await _databaseContext.ItemModels.FirstOrDefaultAsync(t => t.Id == id)
         .ConfigureAwait(false);
       if (dbContextObject == null)
       {
 #if (HasLogging)
-        _logger.LogWarning("Item with Id: {id} was not found.", id);
+        _logger.LogWarning("ItemModel with Id: {id} was not found.", id);
 #endif
-        return NotFound($"{nameof(Item)} with Id: {id} was not found.");
+        return NotFound($"{nameof(ItemModel)} with Id: {id} was not found.");
       }
-      SimpleMapper<Item>.Instance.ApplyChanges(value, dbContextObject);
+      SimpleMapper<ItemModel>.Instance.ApplyChanges(value, dbContextObject);
       var recordCount = await _databaseContext.SaveChangesAsync()
           .ConfigureAwait(false);
       if (recordCount == 1){
@@ -143,16 +143,16 @@ namespace NRSRx_WebApi.Controllers.V1
       }
       return Ok(dbContextObject);
 #elseif (HasDb)
-      var dbContextObject = await _databaseContext.Items.FirstOrDefaultAsync(t => t.Id == id)
+      var dbContextObject = await _databaseContext.ItemModels.FirstOrDefaultAsync(t => t.Id == id)
         .ConfigureAwait(false);
       if (dbContextObject == null)
       {
 #if (HasLogging)
-        _logger.LogWarning("Item with Id: {id} was not found.", id);
+        _logger.LogWarning("ItemModel with Id: {id} was not found.", id);
 #endif
-        return NotFound($"{nameof(Item)} with Id: {id} was not found.");
+        return NotFound($"{nameof(ItemModel)} with Id: {id} was not found.");
       }
-      SimpleMapper<Item>.Instance.ApplyChanges(value, dbContextObject);
+      SimpleMapper<ItemModel>.Instance.ApplyChanges(value, dbContextObject);
       _ = await _databaseContext.SaveChangesAsync()
           .ConfigureAwait(false);
       return Ok(dbContextObject);
@@ -165,25 +165,25 @@ namespace NRSRx_WebApi.Controllers.V1
 #endif
     }
 
-    // Put api/Items
+    // Put api/ItemModels
     [HttpDelete]
     [ProducesResponseType(Status200OK)]
     [ProducesResponseType(Status404NotFound)]
 #if (Redis)
-    public async Task<ActionResult> Delete([FromQuery] Guid id, [FromServices] RedisStreamPublisher<Item, DeletedEvent> publisher)
+    public async Task<ActionResult> Delete([FromQuery] Guid id, [FromServices] RedisStreamPublisher<ItemModel, DeletedEvent> publisher)
 #else
     public async Task<ActionResult> Delete([FromQuery] Guid id)
 #endif
     {
 #if (HasDb && HasEventing)
-      var dbContextObject = await _databaseContext.Items.FirstOrDefaultAsync(t => t.Id == id)
+      var dbContextObject = await _databaseContext.ItemModels.FirstOrDefaultAsync(t => t.Id == id)
         .ConfigureAwait(false);
       if (dbContextObject == null)
       {
 #if (HasLogging)
-        _logger.LogWarning("Item with Id: {id} was not found.", id);
+        _logger.LogWarning("ItemModel with Id: {id} was not found.", id);
 #endif
-        return NotFound($"{nameof(Item)} with Id: {id} was not found.");
+        return NotFound($"{nameof(ItemModel)} with Id: {id} was not found.");
       }
       _ = _databaseContext.Remove(dbContextObject);
       var recordCount = await _databaseContext.SaveChangesAsync()
@@ -193,14 +193,14 @@ namespace NRSRx_WebApi.Controllers.V1
           .ConfigureAwait(false);
       }
 #elseif (HasDb)
-      var dbContextObject = await _databaseContext.Items.FirstOrDefaultAsync(t => t.Id == id)
+      var dbContextObject = await _databaseContext.ItemModels.FirstOrDefaultAsync(t => t.Id == id)
         .ConfigureAwait(false);
       if (dbContextObject == null)
       {
 #if (HasLogging)
-        _logger.LogWarning("Item with Id: {id} was not found.", id);
+        _logger.LogWarning("ItemModel with Id: {id} was not found.", id);
 #endif
-        return NotFound($"{nameof(Item)} with Id: {id} was not found.");
+        return NotFound($"{nameof(ItemModel)} with Id: {id} was not found.");
       }
       _ = _databaseContext.Remove(dbContextObject);
       _ = await _databaseContext.SaveChangesAsync()

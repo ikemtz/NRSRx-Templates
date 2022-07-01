@@ -13,21 +13,21 @@ namespace NRSRx_OData.Controllers.V1
   [ApiVersion("1.0")]
   [Authorize]
   [ResponseCache(Location = ResponseCacheLocation.Any, Duration = 6000)]
-  public class ItemsController : ODataController
+  public class ItemModelsController : ODataController
   {
     private readonly DatabaseContext _databaseContext;
 
-    public ItemsController(DatabaseContext databaseContext)
+    public ItemModelsController(DatabaseContext databaseContext)
     {
       _databaseContext = databaseContext;
     }
 
-    [ProducesResponseType(typeof(ODataEnvelope<Item, Guid>), Status200OK)]
+    [ProducesResponseType(typeof(ODataEnvelope<ItemModel, Guid>), Status200OK)]
     [EnableQuery(MaxTop = 100, AllowedQueryOptions = AllowedQueryOptions.All)]
     [HttpGet]
-    public IQueryable<Item> Get()
+    public IQueryable<ItemModel> Get()
     {
-      return _databaseContext.Items
+      return _databaseContext.ItemModels
         .AsNoTracking();
     }
   }

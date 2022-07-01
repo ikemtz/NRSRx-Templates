@@ -5,6 +5,6 @@ namespace NRSRx_ServiceName.Data
 {
   public partial class DatabaseContext
   {
-    public virtual DbSet<V1.Item> Items { get; set; }
+    public virtual DbSet<V1.ItemModel> ItemModels { get; set; }
   }
 }

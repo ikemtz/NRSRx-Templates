@@ -14,6 +14,19 @@
   },
   "sourceName": "NRSRx_OData",
   "preferNameDirectory": true,
+  "guids": [
+    "98048C9C-BF28-46BA-A98E-63767EE5E3A8"
+  ],
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "SkipModelGeneration",
+          "exclude": [ "Models/**" ]
+        }
+      ]
+    }
+  ],
   "symbols": {
     "Framework": {
       "type": "parameter",
@@ -27,6 +40,20 @@
       ],
       "replaces": "net6.0",
       "defaultValue": "net6.0"
+    },
+    "SkipModelGeneration": {
+      "type": "parameter",
+      "datatype": "bool",
+      "description": "Skip model generation.", 
+      "defaultValue": "false"
+    },
+    "EntityName": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Name of initial entity.",
+      "replaces": "ItemModel",
+      "defaultValue": "Item",
+      "fileRename": "ItemModel"
     },
     "id01": {
       "type": "generated",

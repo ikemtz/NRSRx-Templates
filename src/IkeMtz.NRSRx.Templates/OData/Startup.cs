@@ -19,7 +19,7 @@ namespace NRSRx_OData
     public override Assembly StartupAssembly => typeof(Startup).Assembly;
     public override bool IncludeXmlCommentsInSwaggerDocs => true;
     public override string[] AdditionalAssemblyXmlDocumentFiles => new[] {
-      typeof(Item).Assembly.Location.Replace(".dll", ".xml", StringComparison.InvariantCultureIgnoreCase)
+      typeof(ItemModel).Assembly.Location.Replace(".dll", ".xml", StringComparison.InvariantCultureIgnoreCase)
     };
 
     public override BaseODataModelProvider ODataModelProvider => new ODataModelProvider();

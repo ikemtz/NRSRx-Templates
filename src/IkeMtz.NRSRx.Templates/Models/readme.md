@@ -1,6 +1,6 @@
-# NRSRx_WebApi
+# NRSRx_Models
 
-This project was created with NRSRx WebApi Project Template.  This template is part of the NRSRx Project Templates VS Extension.
+This project was created with NRSRx Models Project Template.  This template is part of the NRSRx Project Templates VS Extension.
 
 These templates are the simplest way of getting started with the [NRSRx](https://github.com/ikemtz/NRSRx) framework.
 

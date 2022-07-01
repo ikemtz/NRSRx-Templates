@@ -27,7 +27,7 @@ namespace NRSRx_WebApi
     public override Assembly StartupAssembly => typeof(Startup).Assembly;
     public override bool IncludeXmlCommentsInSwaggerDocs => true;
     public override string[] AdditionalAssemblyXmlDocumentFiles => new[] {
-      typeof(Item).Assembly.Location.Replace(".dll", ".xml", StringComparison.InvariantCultureIgnoreCase)
+      typeof(ItemModel).Assembly.Location.Replace(".dll", ".xml", StringComparison.InvariantCultureIgnoreCase)
     };
 
     public Startup(IConfiguration configuration) : base(configuration) { }
@@ -83,9 +83,9 @@ namespace NRSRx_WebApi
     {
       var redisConnectionString = Configuration.GetValue<string>("REDIS_CONNECTION_STRING");
       var connectionMultiplexer = ConnectionMultiplexer.Connect(redisConnectionString);
-      _ = services.AddSingleton<ISimplePublisher<Item, CreatedEvent, RedisValue>>((x) => new ItemCreatedPublisher(connectionMultiplexer));
-      _ = services.AddSingleton<ISimplePublisher<Item, UpdatedEvent, RedisValue>>((x) => new ItemUpdatedPublisher(connectionMultiplexer));
-      _ = services.AddSingleton<ISimplePublisher<Item, DeletedEvent, RedisValue>>((x) => new ItemDeletedPublisher(connectionMultiplexer));
+      _ = services.AddSingleton<ISimplePublisher<ItemModel, CreatedEvent, RedisValue>>((x) => new ItemModelCreatedPublisher(connectionMultiplexer));
+      _ = services.AddSingleton<ISimplePublisher<ItemModel, UpdatedEvent, RedisValue>>((x) => new ItemModelUpdatedPublisher(connectionMultiplexer));
+      _ = services.AddSingleton<ISimplePublisher<ItemModel, DeletedEvent, RedisValue>>((x) => new ItemModelDeletedPublisher(connectionMultiplexer));
     }
 #endif
   }

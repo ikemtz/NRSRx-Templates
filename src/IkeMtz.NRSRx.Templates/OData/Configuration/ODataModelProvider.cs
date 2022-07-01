@@ -11,7 +11,7 @@ namespace NRSRx_OData.Configuration
         public static IEdmModel GetV1EdmModel() =>
           ODataEntityModelFactory(builder =>
           {
-              _ = builder.EntitySet<V1.Item>($"{nameof(V1.Item)}s");
+              _ = builder.EntitySet<V1.ItemModel>($"{nameof(V1.ItemModel)}s");
           });
 
         public override IDictionary<ApiVersionDescription, IEdmModel> GetModels() =>
