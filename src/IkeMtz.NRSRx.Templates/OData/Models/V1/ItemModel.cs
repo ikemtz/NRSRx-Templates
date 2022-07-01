@@ -4,8 +4,7 @@ using IkeMtz.NRSRx.Core.Models;
 
 namespace NRSRx_ServiceName.Models.V1
 {
-
-  public partial class ItemModel : IIdentifiable<Guid>, IAuditable
+  public partial class ItemModel : IIdentifiable, IAuditable
   {
     public Guid Id { get; set; }
     [Required]

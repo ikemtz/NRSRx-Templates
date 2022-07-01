@@ -28,6 +28,7 @@ namespace NRSRx_OData
     {
     }
 #if (HasLogging)
+    [ExcludeFromCodeCoverage]
     public override void SetupLogging(IServiceCollection? services = null, IApplicationBuilder? app = null)
     {
 #if (ApplicationInsights)

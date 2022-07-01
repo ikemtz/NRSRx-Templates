@@ -14,3 +14,12 @@ dotnet build ./tests/My.NRSRx1.OData
 
 dotnet new nrsrx-odata -n My.NRSRx2.OData -S true -E Asset -L Splunk -D MySql -o ./tests/My.NRSRx2.OData --force
 dotnet build ./tests/My.NRSRx2.OData
+
+#MySql OData Tests
+dotnet new nrsrx-odata-tests -n My.NRSRx1.OData.Tests -S true -o ./tests/My.NRSRx1.OData.Tests --force
+dotnet build ./tests/My.NRSRx1.OData.Tests
+dotnet test ./tests/My.NRSRx1.OData.Tests --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
+
+dotnet new nrsrx-odata-tests -n My.NRSRx2.OData.Tests -S true -E Asset -o ./tests/My.NRSRx2.OData.Tests --force
+dotnet build ./tests/My.NRSRx2.OData.Tests
+dotnet test ./tests/My.NRSRx2.OData.Tests --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover

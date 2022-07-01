@@ -55,22 +55,6 @@
       "defaultValue": "Item",
       "fileRename": "ItemModel"
     },
-    "id01": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "myid01",
-      "parameters": {
-        "defaultFormat": "D"
-      }
-    },
-    "id02": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "0C3D7E51-A83A-4007-85E9-F16A167A51C8",
-      "parameters": {
-        "defaultFormat": "D"
-      }
-    },
     "HttpPort": {
       "type": "parameter",
       "datatype": "integer",

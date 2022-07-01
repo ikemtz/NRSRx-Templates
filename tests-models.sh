@@ -2,8 +2,8 @@
 rm -r ./tests
 
 #MySql OData
-dotnet new nrsrx-models -n My.NRSRx.Models1 -o ./tests/My.NRSRx.Models1 --force
-dotnet build ./tests/My.NRSRx.Models1
+dotnet new nrsrx-models -n My.NRSRx1.Models -o ./tests/My.NRSRx1.Models --force
+dotnet build ./tests/My.NRSRx1.Models
 
-dotnet new nrsrx-models -n My.NRSRx.Models2 -E Asset -o ./tests/My.NRSRx.Models2 --force
-dotnet build ./tests/My.NRSRx.Models2
+dotnet new nrsrx-models -n My.NRSRx2.Models -E Asset -o ./tests/My.NRSRx2.Models --force
+dotnet build ./tests/My.NRSRx2.Models
