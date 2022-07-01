@@ -27,6 +27,20 @@
       "isVisible": true
     },
     {
+      "id": "SkipModelGeneration",
+      "name": {
+        "text": "Skip Model Generation"
+      },
+      "isVisible": true
+    },
+    {
+      "id": "EntityName",
+      "name": {
+        "text": "Entity Name"
+      },
+      "isVisible": true
+    },
+    {
       "id": "HttpPort",
       "isVisible": false
     }

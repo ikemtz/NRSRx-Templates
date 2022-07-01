@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "@ikemtz",
+  "classifications": ["NRSRx", "Models", "Web"],
+  "name": "NRSRx Models",
+  "shortName": "nrsrx-models",
+  "defaultName": "My.NRSRx.Models",
+  "groupIdentity": "IkeMtz.NRSRx.Models",
+  "identity": "IkeMtz.NRSRx.Models",
+  "description": "A template to create a new NRSRx models library.",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "NRSRx_Models",
+  "preferNameDirectory": true,
+  "guids": [
+    "98048C9C-BF28-46BA-A98E-63767EE5E3A8"
+  ],
+  "symbols": {
+    "Framework": {
+      "type": "parameter",
+      "description": "The target framework for the project.",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "net6.0",
+          "description": "Target netcoreapp6.0"
+        },
+        {
+          "choice": "netstandard2.0",
+          "description": "Target netstandard2.0"
+        }
+      ],
+      "replaces": "netstandard2.0",
+      "defaultValue": "net6.0"
+    },
+    "EntityName": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Name of initial entity.",
+      "replaces": "ItemModel",
+      "defaultValue": "Item",
+      "fileRename": "ItemModel"
+    },
+    "ServiceName": {
+      "type": "generated",
+      "generator": "regex",
+      "dataType": "string",
+      "replaces": "NRSRx_ServiceName",
+      "parameters": {
+        "source": "name",
+        "steps": [
+          {
+            "regex": ".Models.*$",
+            "replacement": ""
+          }
+        ]
+      }
+    }
+  }
+}

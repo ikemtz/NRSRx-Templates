@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>NRSRx_WebApi</AssemblyName>
-    <UserSecretsId>myid01</UserSecretsId>
-    <ProjectGuid>{0C3D7E51-A83A-4007-85E9-F16A167A51C8}</ProjectGuid>
+    <UserSecretsId>98048c9cbf2846baa98e63767ee5e3a8</UserSecretsId>
+    <ProjectGuid>{98048c9cbf2846baa98e63767ee5e3a8}</ProjectGuid>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <Nullable>enable</Nullable>
@@ -31,5 +31,6 @@
     <PackageReference Condition=" '$(HasDb)' == 'True' " Include="IkeMtz.NRSRx.Core.EntityFramework" Version="6.0.181.4" />
     <PackageReference Condition=" '$(Redis)' == 'True' " Include="IkeMtz.NRSRx.Events.Publishers.Redis" Version="6.0.181.4" />
     <PackageReference Condition=" '$(ServiceBus)' == 'True' " Include="IkeMtz.NRSRx.Events.Publishers.ServiceBus" Version="6.0.181.4" />
+    <ProjectReference Condition=" '$(SkipModelGeneration)' == 'True' " Include="..\NRSRx_ServiceName.Models\NRSRx_ServiceName.Models.csproj" />
   </ItemGroup>
 </Project>

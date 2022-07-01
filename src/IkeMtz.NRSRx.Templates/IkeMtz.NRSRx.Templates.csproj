@@ -20,7 +20,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/ikemtz/NRSRx_Templates.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>.NET OData NRSRx</PackageTags>
+    <PackageTags>.NET NRSRx  OData WebApi</PackageTags>
     <PackageReleaseNotes>https://github.com/Dotnet-Boxed/Templates/releases</PackageReleaseNotes>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
@@ -43,10 +43,5 @@
   <ItemGroup Label="Files">
     <Content Include="**\*" Exclude="**\bin\**\*;**\obj\**\*;**\.vs\**\*" />
     <Compile Remove="**\*" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <None Remove="OData\.Dockerfile" />
-    <None Remove="WebApi\.Dockerfile" />
   </ItemGroup>
 </Project>

@@ -4,8 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>myid01</UserSecretsId>
-    <ProjectGuid>{0C3D7E51-A83A-4007-85E9-F16A167A51C8}</ProjectGuid>
+    <UserSecretsId>98048c9cbf2846baa98e63767ee5e3a8</UserSecretsId>
+    <ProjectGuid>{98048c9cbf2846baa98e63767ee5e3a8}</ProjectGuid>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
   </PropertyGroup>
@@ -31,5 +31,6 @@
     <PackageReference Condition=" '$(Splunk)' == 'True' " Include="IkeMtz.NRSRx.Logging.Splunk" Version="6.0.181.4" />
     <PackageReference Condition=" '$(MsSql)' == 'True' " Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
     <PackageReference Condition=" '$(MySql)' == 'True' " Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
+    <ProjectReference Condition=" '$(SkipModelGeneration)' == 'True' " Include="..\NRSRx_ServiceName.Models\NRSRx_ServiceName.Models.csproj" />
   </ItemGroup>
 </Project>

@@ -24,9 +24,16 @@
         {
           "condition": "(!HasEventing)",
           "exclude": [ "Publishers/*" ]
+        },
+        {
+          "condition": "SkipModelGeneration",
+          "exclude": [ "Models/**" ]
         }
       ]
     }
+  ],
+  "guids": [
+    "98048C9C-BF28-46BA-A98E-63767EE5E3A8"
   ],
   "symbols": {
     "Framework": {
@@ -42,21 +49,19 @@
       "replaces": "net6.0",
       "defaultValue": "net6.0"
     },
-    "id01": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "myid01",
-      "parameters": {
-        "defaultFormat": "D"
-      }
+    "SkipModelGeneration": {
+      "type": "parameter",
+      "datatype": "bool",
+      "description": "Skip model generation.", 
+      "defaultValue": "false"
     },
-    "id02": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "0C3D7E51-A83A-4007-85E9-F16A167A51C8",
-      "parameters": {
-        "defaultFormat": "D"
-      }
+    "EntityName": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Name of initial entity.",
+      "replaces": "ItemModel",
+      "defaultValue": "Item",
+      "fileRename": "ItemModel"
     },
     "HttpPort": {
       "type": "parameter",
