@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "@ikemtz",
+  "classifications": ["NRSRx", "Service", "WebApi", "Web", "Tests"],
+  "name": "NRSRx WebApi Tests",
+  "shortName": "nrsrx-webapi-tests",
+  "defaultName": "My.NRSRx.WebApi.Tests",
+  "groupIdentity": "IkeMtz.NRSRx.WebApi.Tests",
+  "identity": "IkeMtz.NRSRx.WebApi.Tests",
+  "description": "A template to create a test project for a new NRSRx WebApi service.",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "NRSRx_WebApi_Tests",
+  "preferNameDirectory": true,
+  "guids": [
+    "98048C9C-BF28-46BA-A98E-63767EE5E3A8"
+  ],
+  "sources": [
+    {
+      "modifiers": [
+      ]
+    }
+  ],
+  "symbols": {
+    "Framework": {
+      "type": "parameter",
+      "description": "The target framework for the project.",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "net6.0",
+          "description": "Target netcoreapp6.0"
+        }
+      ],
+      "replaces": "net6.0",
+      "defaultValue": "net6.0"
+    },
+    "EntityName": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "Name of initial entity.",
+      "replaces": "ItemModel",
+      "defaultValue": "Item",
+      "fileRename": "ItemModel"
+    },
+    "SkipModelGeneration": {
+      "type": "parameter",
+      "datatype": "bool",
+      "description": "Skip model generation.", 
+      "defaultValue": "false"
+    },
+    "EntityNameLower":{
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source":"EntityName",
+        "toLower": true
+      },
+      "replaces":"itemName"
+    },
+    "ServiceName": {
+      "type": "generated",
+      "generator": "regex",
+      "dataType": "string",
+      "replaces": "NRSRx_ServiceName",
+      "parameters": {
+        "source": "name",
+        "steps": [
+          {
+            "regex": ".WebApi.*$",
+            "replacement": ""
+          },
+          {
+            "regex": ".Tests?$",
+            "replacement": ""
+          }
+        ]
+      }
+    },
+    "DatabaseProvider": {
+      "type": "parameter",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "MsSql",
+          "displayName": "MS SQL Server",
+          "description": "Use a Microsoft SQL Server database"
+        },
+        {
+          "choice": "MySql",
+          "displayName": "MySql Server",
+          "description": "Use a MySql database"
+        },
+        {
+          "choice": "NoDb",
+          "displayName": "No Database",
+          "description": "This WebApi will not have a persisted state"
+        }
+      ],
+      "defaultValue": "MsSql",
+      "description": "The type of database that will be used."
+    },
+    "HasDb": {
+      "type": "computed",
+      "value": "(DatabaseProvider != \"NoDb\")"
+    },
+    "EventingProvider": {
+      "type": "parameter",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "Redis",
+          "displayName": "Redis Streams",
+          "description": "Leverage Redis Streams for pub/sub"
+        },
+        {
+          "choice": "ServiceBus",
+          "displayName": "Azure ServiceBus",
+          "description": "Leverage Azure ServiceBus for pub/sub"
+        },
+        {
+          "choice": "NoEvents",
+          "description": "No Eventing will be used",
+          "displayName": "No Eventing"
+        }
+      ],
+      "defaultValue": "ServiceBus",
+      "description": "The type of eventing provider that will be used."
+    },
+    "Redis": {
+      "type": "computed",
+      "value": "(EventingProvider == \"Redis\")"
+    },
+    "ServiceBus": {
+      "type": "computed",
+      "value": "(EventingProvider == \"ServiceBus\")"
+    },
+    "HasEventing": {
+      "type": "computed",
+      "value": "(EventingProvider != \"NoEvents\")"
+    }
+  }
+}

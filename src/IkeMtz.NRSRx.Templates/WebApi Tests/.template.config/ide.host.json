@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json.schemastore.org/vs-2017.3.host",
+  "icon": "icon.png",
+  "supportsDocker": false,
+  "defaultSymbolVisibility": false,
+  "order": 1,
+  "symbolInfo": [
+    {
+      "id": "EntityName",
+      "name": {
+        "text": "Entity Name"
+      },
+      "isVisible": true
+    },
+    {
+      "id": "DatabaseProvider",
+      "name": {
+        "text": "Database Provider"
+      },
+      "isVisible": true
+    },
+    {
+      "id": "EventingProvider",
+      "name": {
+        "text": "Eventing Provider"
+      },
+      "isVisible": true
+    }
+  ]
+}
