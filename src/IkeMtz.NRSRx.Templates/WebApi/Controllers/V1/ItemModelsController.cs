@@ -62,11 +62,11 @@ namespace NRSRx_WebApi.Controllers.V1
     public async Task<ActionResult> Get([FromQuery] Guid id)
     {
 #if (HasDb)
-      var obj = await _databaseContext.ItemModels
+      var dbItemModel = await _databaseContext.ItemModels
         .AsNoTracking()
         .FirstOrDefaultAsync(t => t.Id == id)
         .ConfigureAwait(false);
-      return Ok(obj);
+      return Ok(dbItemModel);
 #else
       return Ok();
 #endif
@@ -77,25 +77,26 @@ namespace NRSRx_WebApi.Controllers.V1
     [ProducesResponseType(Status200OK, Type = typeof(ItemModel))]
     [ValidateModel]
 #if (Redis)
-    public async Task<ActionResult> Post([FromBody] ItemModel value, [FromServices] RedisStreamPublisher<ItemModel, CreatedEvent> publisher)
+    public async Task<ActionResult> Post([FromBody] ItemModelUpsertRequest request, [FromServices] RedisStreamPublisher<ItemModel, CreatedEvent> publisher)
 #else
-    public async Task<ActionResult> Post([FromBody] ItemModel value)
+    public async Task<ActionResult> Post([FromBody] ItemModelUpsertRequest request)
 #endif
     {
+      var value = SimpleMapper<ItemModelUpsertRequest, ItemModel>.Instance.Convert(request);
 #if (HasDb && HasEventing)
-      var dbContextObject = _databaseContext.ItemModels.Add(value);
+      var dbItemModel = _databaseContext.ItemModels.Add(value);
       var recordCount = await _databaseContext.SaveChangesAsync()
           .ConfigureAwait(false);
       if (recordCount == 1){
         await publisher.PublishAsync(value)
           .ConfigureAwait(false);
       }
-      return Ok(dbContextObject.Entity);
+      return Ok(dbItemModel.Entity);
 #elseif (HasDb)
-      var dbContextObject = _databaseContext.ItemModels.Add(value);
+      var dbItemModel = _databaseContext.ItemModels.Add(value);
       _ = await _databaseContext.SaveChangesAsync()
           .ConfigureAwait(false);
-      return Ok(dbContextObject.Entity);
+      return Ok(dbItemModel.Entity);
 #elseif (HasEventing)
       await publisher.PublishAsync(value)
           .ConfigureAwait(false);
@@ -112,12 +113,12 @@ namespace NRSRx_WebApi.Controllers.V1
     [ProducesResponseType(Status404NotFound)]
     [ValidateModel]
 #if (Redis)
-    public async Task<ActionResult> Put([FromQuery] Guid id, [FromBody] ItemModel value, [FromServices] RedisStreamPublisher<ItemModel, UpdatedEvent> publisher)
+    public async Task<ActionResult> Put([FromQuery] Guid id, [FromBody] ItemModelUpsertRequest request, [FromServices] RedisStreamPublisher<ItemModel, UpdatedEvent> publisher)
 #else
-    public async Task<ActionResult> Put([FromQuery] Guid id, [FromBody] ItemModel value)
+    public async Task<ActionResult> Put([FromQuery] Guid id, [FromBody] ItemModelUpsertRequest request)
 #endif
     {
-      if (id != value.Id)
+      if (id != request.Id)
       {
 #if (HasLogging)
         _logger.LogWarning("Id values in querystring and post data do not match.");
@@ -125,37 +126,41 @@ namespace NRSRx_WebApi.Controllers.V1
         return Conflict($"Id values in query string and post data do not match.");
       }
 #if (HasDb && HasEventing)
-      var dbContextObject = await _databaseContext.ItemModels.FirstOrDefaultAsync(t => t.Id == id)
+      var dbItemModel = await _databaseContext.ItemModels.FirstOrDefaultAsync(t => t.Id == id)
         .ConfigureAwait(false);
-      if (dbContextObject == null)
+      if (dbItemModel == null)
       {
 #if (HasLogging)
         _logger.LogWarning("ItemModel with Id: {id} was not found.", id);
 #endif
         return NotFound($"{nameof(ItemModel)} with Id: {id} was not found.");
       }
-      SimpleMapper<ItemModel>.Instance.ApplyChanges(value, dbContextObject);
+      SimpleMapper<ItemModelUpsertRequest, ItemModel>.Instance.ApplyChanges(request, dbItemModel);
       var recordCount = await _databaseContext.SaveChangesAsync()
           .ConfigureAwait(false);
       if (recordCount == 1){
-        await publisher.PublishAsync(value)
+        await publisher.PublishAsync(dbItemModel)
           .ConfigureAwait(false);
       }
-      return Ok(dbContextObject);
+      return Ok(dbItemModel);
 #elseif (HasDb)
-      var dbContextObject = await _databaseContext.ItemModels.FirstOrDefaultAsync(t => t.Id == id)
+      var dbItemModel = await _databaseContext.ItemModels.FirstOrDefaultAsync(t => t.Id == id)
         .ConfigureAwait(false);
-      if (dbContextObject == null)
+      if (dbItemModel == null)
       {
 #if (HasLogging)
         _logger.LogWarning("ItemModel with Id: {id} was not found.", id);
 #endif
         return NotFound($"{nameof(ItemModel)} with Id: {id} was not found.");
       }
-      SimpleMapper<ItemModel>.Instance.ApplyChanges(value, dbContextObject);
+      SimpleMapper<ItemModelUpsertRequest, ItemModel>.Instance.ApplyChanges(request, dbItemModel);
       _ = await _databaseContext.SaveChangesAsync()
           .ConfigureAwait(false);
-      return Ok(dbContextObject);
+      return Ok(dbItemModel);
+#elseif (HasEventing && HasDb)
+      await publisher.PublishAsync(dbItemModel)
+          .ConfigureAwait(false);
+      return Ok(dbItemModel);
 #elseif (HasEventing)
       await publisher.PublishAsync(value)
           .ConfigureAwait(false);
@@ -176,33 +181,33 @@ namespace NRSRx_WebApi.Controllers.V1
 #endif
     {
 #if (HasDb && HasEventing)
-      var dbContextObject = await _databaseContext.ItemModels.FirstOrDefaultAsync(t => t.Id == id)
+      var dbItemModel = await _databaseContext.ItemModels.FirstOrDefaultAsync(t => t.Id == id)
         .ConfigureAwait(false);
-      if (dbContextObject == null)
+      if (dbItemModel == null)
       {
 #if (HasLogging)
         _logger.LogWarning("ItemModel with Id: {id} was not found.", id);
 #endif
         return NotFound($"{nameof(ItemModel)} with Id: {id} was not found.");
       }
-      _ = _databaseContext.Remove(dbContextObject);
+      _ = _databaseContext.Remove(dbItemModel);
       var recordCount = await _databaseContext.SaveChangesAsync()
           .ConfigureAwait(false);
       if (recordCount == 1){
-        await publisher.PublishAsync(dbContextObject)
+        await publisher.PublishAsync(dbItemModel)
           .ConfigureAwait(false);
       }
 #elseif (HasDb)
-      var dbContextObject = await _databaseContext.ItemModels.FirstOrDefaultAsync(t => t.Id == id)
+      var dbItemModel = await _databaseContext.ItemModels.FirstOrDefaultAsync(t => t.Id == id)
         .ConfigureAwait(false);
-      if (dbContextObject == null)
+      if (dbItemModel == null)
       {
 #if (HasLogging)
         _logger.LogWarning("ItemModel with Id: {id} was not found.", id);
 #endif
         return NotFound($"{nameof(ItemModel)} with Id: {id} was not found.");
       }
-      _ = _databaseContext.Remove(dbContextObject);
+      _ = _databaseContext.Remove(dbItemModel);
       _ = await _databaseContext.SaveChangesAsync()
           .ConfigureAwait(false);
 #endif

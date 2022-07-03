@@ -34,10 +34,8 @@ namespace NRSRx_ServiceName.OData.Tests.Integration
       GenerateAuthHeader(client, GenerateTestToken());
 
       var response = await client.GetAsync($"odata/v1/{nameof(ItemModel)}s?$count=true");
-      response.EnsureSuccessStatusCode();
-      TestContext.WriteLine($"Server Reponse: {response}");
-      var body = await response.Content.ReadAsStringAsync();
-      var envelope = JsonConvert.DeserializeObject<ODataEnvelope<ItemModel>>(body);
+      var envelope = await DeserializeResponseAsync<ODataEnvelope<ItemModel>>(response);
+      response.EnsureSuccessStatusCode(); 
       Assert.AreEqual(envelope?.Count, envelope?.Value.Count());
       envelope?.Value.ToList().ForEach(t =>
       {
@@ -65,9 +63,8 @@ namespace NRSRx_ServiceName.OData.Tests.Integration
       GenerateAuthHeader(client, GenerateTestToken());
 
       var response = await client.GetAsync($"odata/v1/{nameof(ItemModel)}s?$apply=groupby(({nameof(itemModel.Name)}))");
+      var envelope = await DeserializeResponseAsync<ODataEnvelope<ItemModel>>(response);
       response.EnsureSuccessStatusCode();
-      var body = await response.Content.ReadAsStringAsync();
-      TestContext.WriteLine($"Server Reponse: {body}");
       Assert.IsFalse(body.ToLower().Contains("updatedby"));
       StringAssert.Contains(body, itemModel.Name);
     }

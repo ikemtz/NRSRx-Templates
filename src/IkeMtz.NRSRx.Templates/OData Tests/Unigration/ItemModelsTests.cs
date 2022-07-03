@@ -33,11 +33,9 @@ namespace NRSRx_ServiceName.OData.Tests.Unigration
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.GetStringAsync($"odata/v1/{nameof(ItemModel)}s?$count=true");
-
-      //Validate OData Result
-      TestContext.WriteLine($"Server Reponse: {resp}");
-      var envelope = JsonConvert.DeserializeObject<ODataEnvelope<ItemModel>>(resp);
+      var response = await client.GetAsync($"odata/v1/{nameof(ItemModel)}s?$count=true");
+      var envelope = await DeserializeResponseAsync<ODataEnvelope<ItemModel>>(response);
+      response.EnsureSuccessStatusCode();
       Assert.AreEqual(itemModel.Name, envelope?.Value.First().Name);
     }
   }
