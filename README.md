@@ -64,9 +64,9 @@ These options should have the same value for the group of services generated for
 | ----- | ---- | ------------- | ----------- |
 | -S | --SkipModelGeneration | false | Use this option if you intent to use a Models project.|
 | -E | --EntityName          | Item |  Name of initial entity created within the project. |   
-| -L | --LoggingProvider | NoLogging | The type of logging provider that will be used (logging options below.) |
-| -D | --DatabaseProvider | NoDb | The type of database that will be used (db options below.) | 
-| -Ev | --EventingProvider | NoEvents | The type of eventing provider that will be used (eventing options below.) |
+| -L | --LoggingProvider | ApplicationInsights | The type of logging provider that will be used (logging options below.) |
+| -D | --DatabaseProvider | MsSql | The type of database that will be used (db options below.) | 
+| -Ev | --EventingProvider | ServiceBus | The type of eventing provider that will be used (eventing options below.) |
               
 ### Logging Options
 **Note:** this is not an option for Models projects.
