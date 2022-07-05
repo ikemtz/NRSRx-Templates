@@ -79,10 +79,12 @@ These options should have the same value for the group of services generated for
 
 NRSRx is an opinionated framework, which is also true for its templates.  All domain/entity names should be in singular form.
 
-** Do **
+**Do:**
+
 ```Sample.Student.Models```
 
-** Don't **
+**Don't:**
+
 ```Sample.Students.Models```
 
 The following naming standards should also be observed:
