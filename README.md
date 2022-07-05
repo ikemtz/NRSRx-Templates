@@ -56,3 +56,39 @@ The following naming standards should also be observed:
 
 ### Scripting a WebApi Test project
 ```dotnet new nrsrx-webapi-test -n {$Your Domain Name}.WebApi.Tests```
+
+## Options 
+
+These options should have the same value for the group of services generated for the same domain.
+| Short | Long | Default Value | Description |
+| ----- | ---- | ------------- | ----------- |
+| -S | --SkipModelGeneration | false | Use this option if you intent to use a Models project.|
+| -E | --EntityName          | Item |  Name of initial entity created within the project. |   
+| -L | --LoggingProvider | NoLogging | The type of logging provider that will be used (logging options below.) |
+| -D | --DatabaseProvider | NoDb | The type of database that will be used (db options below.) | 
+| -Ev | --EventingProvider | NoEvents | The type of eventing provider that will be used (eventing options below.) |
+              
+### Logging Options
+**Note:** this is not an option for Models projects.
+| Option            |
+| ----------------- |
+| ApplicationInsights |
+| Splunk |
+| Elasticsearch |
+| NoLogging |
+
+### Db Options
+**Note:** this is not an option for Models projects.  Additionally, OData and OData Test projects cannot utilize the NoDb option.
+| Option            | Description |
+| ----------------- | ----------- |
+| MsSql | Microsoft SQL Server |
+| MySql | MySql |
+| NoDb | No database |
+
+### Eventing Options
+**Note:** this option only applies to WebApi and WebApi Test projects.
+| Option            | Description |
+| ----------------- | ----------- |
+| Redis | Redis Streams |
+| ServiceBus | Azure ServiceBus |
+| NoEvents | No Eventing will be used |
