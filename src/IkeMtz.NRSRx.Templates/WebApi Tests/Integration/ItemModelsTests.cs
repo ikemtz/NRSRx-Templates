@@ -19,18 +19,18 @@ using IkeMtz.NRSRx.Core.Unigration.Events;
 using Moq;
 #endif
 
-namespace NRSRx_ServiceName.WebApi.Tests.Unigration
+namespace NRSRx_ServiceName.WebApi.Tests.Integration
 {
   [TestClass]
   public partial class ItemModelsTests : BaseUnigrationTests
   {
 #if (HasDb)
     [TestMethod]
-    [TestCategory("Unigration")]
+    [TestCategory("Integration")]
     public async Task GetItemModelsTest()
     {
       var itemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
+      using var srv = new TestServer(TestHostBuilder<Startup, IntegrationWebApiTestStartup>()
           .ConfigureTestServices(x =>
           {
             ExecuteOnContext<DatabaseContext>(x, db =>
@@ -50,19 +50,11 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
 #endif
 
     [TestMethod]
-    [TestCategory("Unigration")]
+    [TestCategory("Integration")]
     public async Task PostItemModelsTest()
     {
-#if (Redis)
-      var mockPublisher = MockRedisStreamFactory<ItemModel, CreatedEvent>.CreatePublisher();
-#endif
       var itemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
-        .ConfigureTestServices(x => {
-#if (Redis)
-          _ = x.AddSingleton(mockPublisher.Object);
-#endif
-        }));
+      using var srv = new TestServer(TestHostBuilder<Startup, IntegrationWebApiTestStartup>());
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
@@ -77,29 +69,20 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
       Assert.IsNotNull(dbItemModel);
       Assert.AreEqual(httpItemModel.CreatedOnUtc, dbItemModel.CreatedOnUtc);
 #endif
-#if (Redis)
-      mockPublisher.Verify(t => t.PublishAsync(It.Is<ItemModel>(t => t.Id == httpItemModel.Id)), Times.Once);
-#endif
     }
 
     [TestMethod]
-    [TestCategory("Unigration")]
+    [TestCategory("Integration")]
     public async Task PutItemModelTest()
     {
-#if (Redis)
-      var mockPublisher = MockRedisStreamFactory<ItemModel, UpdatedEvent>.CreatePublisher();
-#endif
       var originalItemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
+      using var srv = new TestServer(TestHostBuilder<Startup, IntegrationWebApiTestStartup>()
         .ConfigureTestServices(x => {
 #if (HasDb)
           ExecuteOnContext<DatabaseContext>(x, db =>
           {
             _ = db.ItemModels.Add(originalItemModel);
           });
-#endif
-#if (Redis)
-          _ = x.AddSingleton(mockPublisher.Object);
 #endif
         }));
       var client = srv.CreateClient();
@@ -124,29 +107,23 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
       Assert.IsNotNull(dbUpdatedItemModel.UpdatedOnUtc);
       Assert.AreEqual(httpUpdatedItemModel.UpdatedOnUtc, dbUpdatedItemModel.UpdatedOnUtc);
 #endif
-#if (Redis)
-      mockPublisher.Verify(t => t.PublishAsync(It.Is<ItemModel>(t => t.Id == originalItemModel.Id)), Times.Once);
-#endif
     }
 
     [TestMethod]
-    [TestCategory("Unigration")]
+    [TestCategory("Integration")]
     public async Task DeleteItemModelTest()
     {
 #if (Redis)
       var mockPublisher = MockRedisStreamFactory<ItemModel, DeletedEvent>.CreatePublisher();
 #endif
       var itemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
+      using var srv = new TestServer(TestHostBuilder<Startup, IntegrationWebApiTestStartup>()
         .ConfigureTestServices(x => {
 #if (HasDb)
           ExecuteOnContext<DatabaseContext>(x, db =>
           {
             _ = db.ItemModels.Add(itemModel);
           });
-#endif
-#if (Redis)
-          _ = x.AddSingleton(mockPublisher.Object);
 #endif
         }));
       var client = srv.CreateClient();
