@@ -31,13 +31,13 @@ You can either go through the steps within Visual Studio or use the following sc
 ```dotnet new nrsrx-odata -n {$Your Domain Name}.OData```
 
 ### Scripting an OData Test project
-```dotnet new nrsrx-odata-test -n {$Your Domain Name}.OData.Tests```
+```dotnet new nrsrx-odata-tests -n {$Your Domain Name}.OData.Tests```
 
 ### Scripting a WebApi project
 ```dotnet new nrsrx-webapi -n {$Your Domain Name}.WebApi```
 
 ### Scripting a WebApi Test project
-```dotnet new nrsrx-webapi-test -n {$Your Domain Name}.WebApi.Tests```
+```dotnet new nrsrx-webapi-tests -n {$Your Domain Name}.WebApi.Tests```
 
 ## Options 
 
