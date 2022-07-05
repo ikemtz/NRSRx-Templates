@@ -18,29 +18,11 @@ At your closest command prompt, run the following:
 
 The above command is also useful for pulling the latest version of the templates.  It's **ALWAYS** a good idea to generate your projects off of the latest template.
 
-## Scripting Model, OData, WebApi Services, and test projects
+## Generating new projects via dotnet cli scripts
 
-You can either go through the steps within Visual Studio or use the following script.  
+You can either go through the steps within Visual Studio or use the following scripts.  
 
 **Note**: One drawback to this approach is that you'll have to add the generated projects to your solution file manually.
-
-## Naming Standards
-
-NRSRx is an opinionated framework, which is also true for its templates.  All domain/entity names should be in singular form.
-
-** Do **
-```Sample.Student.Models```
-
-** Don't **
-```Sample.Students.Models```
-
-The following naming standards should also be observed:
-* Model projects should end with a ".Models" suffix.
-* OData projects should end with a ".OData" suffix.
-* WebApi projects should end with a ".WebApi" suffix.
-* Test projects should end with a ".Tests" suffix.
-
-## Scripting
 
 ### Scripting a models project:
 ```dotnet new nrsrx-models -n {$Your Domain Name}.Models```
@@ -92,3 +74,19 @@ These options should have the same value for the group of services generated for
 | Redis | Redis Streams |
 | ServiceBus | Azure ServiceBus |
 | NoEvents | No Eventing will be used |
+
+## Naming Standards
+
+NRSRx is an opinionated framework, which is also true for its templates.  All domain/entity names should be in singular form.
+
+** Do **
+```Sample.Student.Models```
+
+** Don't **
+```Sample.Students.Models```
+
+The following naming standards should also be observed:
+* Model projects should end with a ".Models" suffix.
+* OData projects should end with a ".OData" suffix.
+* WebApi projects should end with a ".WebApi" suffix.
+* Test projects should end with a ".Tests" suffix.
