@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>98048c9cbf2846baa98e63767ee5e3a8</UserSecretsId>
+    <UserSecretsId>{98048c9cbf2846baa98e63767ee5e3a8}</UserSecretsId>
     <ProjectGuid>98048c9cbf2846baa98e63767ee5e3a8</ProjectGuid>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
