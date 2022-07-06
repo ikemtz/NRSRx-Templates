@@ -22,7 +22,7 @@ The above command is also useful for pulling the latest version of the templates
 
 You can either go through the steps within Visual Studio or use the following scripts.  
 
-**Note**: One drawback to this approach is that you'll have to add the generated projects to your solution file manually.
+**Note**: If the template can find a solution file (either in the same or parent folders), the generated projects will automagically be added to your solution.
 
 ### Scripting a models project:
 ```dotnet new nrsrx-models -n {$Your Domain Name}.Models```
