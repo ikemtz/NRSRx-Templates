@@ -87,7 +87,7 @@ namespace NRSRx_WebApi.Controllers.V1
       var dbItemModel = _databaseContext.ItemModels.Add(value);
       var recordCount = await _databaseContext.SaveChangesAsync()
           .ConfigureAwait(false);
-      if (recordCount == 1){
+      if (recordCount > 0){
         await publisher.PublishAsync(value)
           .ConfigureAwait(false);
       }
@@ -138,7 +138,7 @@ namespace NRSRx_WebApi.Controllers.V1
       SimpleMapper<ItemModelUpsertRequest, ItemModel>.Instance.ApplyChanges(request, dbItemModel);
       var recordCount = await _databaseContext.SaveChangesAsync()
           .ConfigureAwait(false);
-      if (recordCount == 1){
+      if (recordCount > 0){
         await publisher.PublishAsync(dbItemModel)
           .ConfigureAwait(false);
       }
@@ -193,7 +193,7 @@ namespace NRSRx_WebApi.Controllers.V1
       _ = _databaseContext.Remove(dbItemModel);
       var recordCount = await _databaseContext.SaveChangesAsync()
           .ConfigureAwait(false);
-      if (recordCount == 1){
+      if (recordCount > 0){
         await publisher.PublishAsync(dbItemModel)
           .ConfigureAwait(false);
       }

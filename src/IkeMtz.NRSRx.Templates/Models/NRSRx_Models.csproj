@@ -9,8 +9,9 @@
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <OutputType>Library</OutputType>
     <LangVersion>latest</LangVersion>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+  <PropertyGroup>
     <NoWarn>1701;1702;CA1707;CS1591;CS8618</NoWarn>
     <DocumentationFile>./NRSRx_Models.xml</DocumentationFile>
   </PropertyGroup>
