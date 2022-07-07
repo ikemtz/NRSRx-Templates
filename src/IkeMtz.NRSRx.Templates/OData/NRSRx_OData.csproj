@@ -8,6 +8,7 @@
     <ProjectGuid>98048c9cbf2846baa98e63767ee5e3a8</ProjectGuid>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;CA1707;CS1591;CS8618</NoWarn>
