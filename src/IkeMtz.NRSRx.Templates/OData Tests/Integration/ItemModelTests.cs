@@ -42,7 +42,6 @@ namespace NRSRx_ServiceName.OData.Tests.Integration
         Assert.IsNotNull(t.Name);
         Assert.AreNotEqual(Guid.Empty, t.Id);
       });
-      StringAssert.Contains(body, itemModel.Name);
     }
 
     [TestMethod]
@@ -65,8 +64,6 @@ namespace NRSRx_ServiceName.OData.Tests.Integration
       var response = await client.GetAsync($"odata/v1/{nameof(ItemModel)}s?$apply=groupby(({nameof(itemModel.Name)}))");
       var envelope = await DeserializeResponseAsync<ODataEnvelope<ItemModel>>(response);
       response.EnsureSuccessStatusCode();
-      Assert.IsFalse(body.ToLower().Contains("updatedby"));
-      StringAssert.Contains(body, itemModel.Name);
     }
   }
 }
