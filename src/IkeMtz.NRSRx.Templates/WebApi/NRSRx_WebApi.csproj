@@ -21,6 +21,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include=".\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="IkeMtz.NRSRx.Core.WebApi" Version="6.0.184.6" />
     <PackageReference Condition=" '$(ApplicationInsights)' == 'True' " Include="IkeMtz.NRSRx.Logging.ApplicationInsights" Version="6.0.184.6" />
     <PackageReference Condition=" '$(Elasticsearch)' == 'True' " Include="IkeMtz.NRSRx.Logging.Elasticsearch" Version="6.0.184.6" />
