@@ -131,6 +131,50 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
 
     [TestMethod]
     [TestCategory("Unigration")]
+    [ExpectedException(typeof(HttpRequestException))]
+    public async Task PutItemModelIdConflictTest()
+    {
+#if (Redis)
+      var mockPublisher = MockRedisStreamFactory<ItemModel, UpdatedEvent>.CreatePublisher();
+#endif
+      var itemModel = Factories.ItemModelFactory(); 
+      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
+        .ConfigureTestServices(x => {
+#if (Redis)
+          _ = x.AddSingleton(mockPublisher.Object);
+#endif
+        }));
+      var client = srv.CreateClient();
+      GenerateAuthHeader(client, GenerateTestToken());
+
+      var response = await client.PutAsJsonAsync($"api/v1/{nameof(ItemModel)}s.json?id={Guid.NewGuid()}", itemModel);
+      _ = response.EnsureSuccessStatusCode();
+    }
+
+    [TestMethod]
+    [TestCategory("Unigration")]
+    [ExpectedException(typeof(HttpRequestException))]
+    public async Task PutItemModelNotFoundTest()
+    {
+#if (Redis)
+      var mockPublisher = MockRedisStreamFactory<ItemModel, UpdatedEvent>.CreatePublisher();
+#endif
+      var itemModel = Factories.ItemModelFactory(); 
+      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
+        .ConfigureTestServices(x => {
+#if (Redis)
+          _ = x.AddSingleton(mockPublisher.Object);
+#endif
+        }));
+      var client = srv.CreateClient();
+      GenerateAuthHeader(client, GenerateTestToken());
+
+      var response = await client.PutAsJsonAsync($"api/v1/{nameof(ItemModel)}s.json?id={itemModel.Id}", itemModel);
+      _ = response.EnsureSuccessStatusCode();
+    }
+    
+    [TestMethod]
+    [TestCategory("Unigration")]
     public async Task DeleteItemModelTest()
     {
 #if (Redis)

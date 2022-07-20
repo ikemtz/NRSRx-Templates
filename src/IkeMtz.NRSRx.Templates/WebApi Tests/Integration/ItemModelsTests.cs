@@ -113,9 +113,6 @@ namespace NRSRx_ServiceName.WebApi.Tests.Integration
     [TestCategory("Integration")]
     public async Task DeleteItemModelTest()
     {
-#if (Redis)
-      var mockPublisher = MockRedisStreamFactory<ItemModel, DeletedEvent>.CreatePublisher();
-#endif
       var itemModel = Factories.ItemModelFactory();
       using var srv = new TestServer(TestHostBuilder<Startup, IntegrationWebApiTestStartup>()
         .ConfigureTestServices(x => {
@@ -137,9 +134,6 @@ namespace NRSRx_ServiceName.WebApi.Tests.Integration
       var dbItemModel = await dbContext.ItemModels.FirstOrDefaultAsync(t => t.Id == itemModel.Id);
 
       Assert.IsNull(dbItemModel);
-#endif
-#if (Redis)
-      mockPublisher.Verify(t => t.PublishAsync(It.Is<ItemModel>(t => t.Id == itemModel.Id)), Times.Once);
 #endif
     }
   }

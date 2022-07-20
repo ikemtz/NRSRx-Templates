@@ -17,6 +17,7 @@ using NRSRx_WebApi.Publishers;
 #endif
 #if (Redis)
 using StackExchange.Redis;
+using IkeMtz.NRSRx.Events.Publishers.Redis;
 #endif
 
 namespace NRSRx_WebApi
@@ -86,9 +87,9 @@ namespace NRSRx_WebApi
       if (!string.IsNullOrWhiteSpace(redisConnectionString))
       {
         var connectionMultiplexer = ConnectionMultiplexer.Connect(redisConnectionString);
-        _ = services.AddSingleton<ISimplePublisher<ItemModel, CreatedEvent, RedisValue>>((x) => new ItemModelCreatedPublisher(connectionMultiplexer));
-        _ = services.AddSingleton<ISimplePublisher<ItemModel, UpdatedEvent, RedisValue>>((x) => new ItemModelUpdatedPublisher(connectionMultiplexer));
-        _ = services.AddSingleton<ISimplePublisher<ItemModel, DeletedEvent, RedisValue>>((x) => new ItemModelDeletedPublisher(connectionMultiplexer));
+        _ = services.AddSingleton<RedisStreamPublisher<ItemModel, CreatedEvent>>((x) => new ItemModelCreatedPublisher(connectionMultiplexer));
+        _ = services.AddSingleton<RedisStreamPublisher<ItemModel, UpdatedEvent>>((x) => new ItemModelUpdatedPublisher(connectionMultiplexer));
+        _ = services.AddSingleton<RedisStreamPublisher<ItemModel, DeletedEvent>>((x) => new ItemModelDeletedPublisher(connectionMultiplexer));
       }
     }
 #endif

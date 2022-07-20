@@ -15,5 +15,26 @@ namespace NRSRx_ServiceName.OData.Tests.Integration
     {
       builder.SetupTestAuthentication(Configuration, TestContext);
     }
+    public override void SetupDatabase(IServiceCollection services, string dbConnectionString)
+    {
+      var serviceProvider = services.BuildServiceProvider();
+#if (MsSql)
+       _ = services
+        .AddDbContextPool<DatabaseContext>(x =>
+        {
+          x.UseSqlServer(dbConnectionString);
+          x.AddInterceptors(new AuditableTestInterceptor(serviceProvider.GetService<IHttpContextAccessor>()));
+        });
+#endif
+#if (MySql)
+       _ = services
+        .AddDbContext<DatabaseContext>(x =>
+        {
+          x.UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString));
+          x.AddInterceptors(new AuditableTestInterceptor(serviceProvider.GetService<IHttpContextAccessor>()));
+        });
+#endif
+
+    }
   }
 }
