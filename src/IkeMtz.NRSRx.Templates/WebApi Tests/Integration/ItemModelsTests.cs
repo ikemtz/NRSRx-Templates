@@ -67,7 +67,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Integration
       var dbItemModel = await dbContext.ItemModels.FirstOrDefaultAsync(t => t.Id == httpItemModel.Id);
 
       Assert.IsNotNull(dbItemModel);
-      Assert.AreEqual(httpItemModel.CreatedOnUtc, dbItemModel.CreatedOnUtc);
+      Assert.AreEqual(httpItemModel.CreatedOnUtc.ToString(), dbItemModel.CreatedOnUtc.ToString());
 #endif
     }
 
@@ -105,7 +105,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Integration
       Assert.IsNotNull(dbUpdatedItemModel);
       Assert.AreEqual("IntegrationTester@email.com", dbUpdatedItemModel.UpdatedBy);
       Assert.IsNotNull(dbUpdatedItemModel.UpdatedOnUtc);
-      Assert.AreEqual(httpUpdatedItemModel.UpdatedOnUtc, dbUpdatedItemModel.UpdatedOnUtc);
+      Assert.AreEqual(httpUpdatedItemModel.UpdatedOnUtc.ToString(), dbUpdatedItemModel.UpdatedOnUtc.ToString());
 #endif
     }
 

@@ -1,4 +1,10 @@
 #!/bin/bash
+dotnet new --install src/IkeMtz.NRSRx.Templates/Models
+dotnet new --install src/IkeMtz.NRSRx.Templates/OData
+dotnet new --install src/IkeMtz.NRSRx.Templates/'OData Tests'
+dotnet new --install src/IkeMtz.NRSRx.Templates/WebApi
+dotnet new --install src/IkeMtz.NRSRx.Templates/'WebApi Tests'
+
 set -e
 echo --- Executing tests-models.sh ---
 /bin/bash -e ./tests-models.sh
