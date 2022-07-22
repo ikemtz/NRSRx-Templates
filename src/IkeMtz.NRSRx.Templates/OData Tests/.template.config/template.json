@@ -58,7 +58,7 @@
         "source": "EntityName",
         "toLower": true
       },
-      "replaces": "itemName"
+      "replaces": "itemModel"
     },
     "DatabaseProvider": {
       "type": "parameter",
