@@ -1,6 +1,9 @@
 using IkeMtz.NRSRx.Core.Unigration;
+using IkeMtz.NRSRx.Core.Unigration.Data;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using NRSRx_ServiceName.Data;
 
 namespace NRSRx_ServiceName.OData.Tests.Integration
 {

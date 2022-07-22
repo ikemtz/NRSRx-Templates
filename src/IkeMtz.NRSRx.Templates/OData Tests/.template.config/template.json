@@ -48,17 +48,35 @@
     "SkipModelGeneration": {
       "type": "parameter",
       "datatype": "bool",
-      "description": "Skip model generation.", 
+      "description": "Skip model generation.",
       "defaultValue": "false"
     },
-    "EntityNameLower":{
+    "EntityNameLower": {
       "type": "generated",
       "generator": "casing",
       "parameters": {
-        "source":"EntityName",
+        "source": "EntityName",
         "toLower": true
       },
-      "replaces":"itemName"
+      "replaces": "itemName"
+    },
+    "DatabaseProvider": {
+      "type": "parameter",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "MsSql",
+          "displayName": "MS SQL Server",
+          "description": "Use a Microsoft SQL Server database"
+        },
+        {
+          "choice": "MySql",
+          "displayName": "MySql Server",
+          "description": "Use a MySql database"
+        }
+      ],
+      "defaultValue": "MsSql",
+      "description": "The type of database that will be used."
     },
     "ServiceName": {
       "type": "generated",
@@ -78,6 +96,14 @@
           }
         ]
       }
+    },
+    "MsSql": {
+      "type": "computed",
+      "value": "(DatabaseProvider == \"MsSql\")"
+    },
+    "MySql": {
+      "type": "computed",
+      "value": "(DatabaseProvider == \"MySql\")"
     }
   },
   "primaryOutputs": [
