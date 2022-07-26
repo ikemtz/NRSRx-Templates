@@ -11,6 +11,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using static IkeMtz.NRSRx.Core.Unigration.TestDataFactory;
 #if (HasDb)
+using System.Net;
 using Microsoft.EntityFrameworkCore;
 #endif
 #if (HasEventing)
@@ -46,6 +47,20 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
       var result = await DeserializeResponseAsync<ItemModel>(response);
       _ = response.EnsureSuccessStatusCode();
       Assert.AreEqual(itemModel.Name, result?.Name);
+    }
+#endif
+#if (HasDb)
+    [TestMethod]
+    [TestCategory("Unigration")]
+    public async Task GetItemModelsNotFoundTest()
+    {
+      var itemModel = Factories.ItemModelFactory();
+      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>());
+      var client = srv.CreateClient();
+      GenerateAuthHeader(client, GenerateTestToken());
+
+      var response = await client.GetAsync($"api/v1/{nameof(ItemModel)}s.json?id={itemModel.Id}");
+      Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
     }
 #endif
 
@@ -172,7 +187,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
       var response = await client.PutAsJsonAsync($"api/v1/{nameof(ItemModel)}s.json?id={itemModel.Id}", itemModel);
       _ = response.EnsureSuccessStatusCode();
     }
-    
+
     [TestMethod]
     [TestCategory("Unigration")]
     public async Task DeleteItemModelTest()
@@ -209,5 +224,28 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
       mockPublisher.Verify(t => t.PublishAsync(It.Is<ItemModel>(t => t.Id == itemModel.Id)), Times.Once);
 #endif
     }
+
+#if (HasDb)
+    [TestMethod]
+    [TestCategory("Unigration")]
+    public async Task DeleteItemModelsNotFoundTest()
+    {
+#if (Redis)
+      var mockPublisher = MockRedisStreamFactory<ItemModel, DeletedEvent>.CreatePublisher();
+#endif
+      var itemModel = Factories.ItemModelFactory();
+      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
+        .ConfigureTestServices(x => {
+#if (Redis)
+          _ = x.AddSingleton(mockPublisher.Object);
+#endif
+        }));
+      var client = srv.CreateClient();
+      GenerateAuthHeader(client, GenerateTestToken());
+
+      var response = await client.DeleteAsync($"api/v1/{nameof(ItemModel)}s.json?id={itemModel.Id}");
+      Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
+    }
+#endif
   }
 }

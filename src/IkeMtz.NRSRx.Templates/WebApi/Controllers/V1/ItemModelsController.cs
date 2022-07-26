@@ -59,6 +59,9 @@ namespace NRSRx_WebApi.Controllers.V1
     // Get api/ItemModels
     [HttpGet]
     [ProducesResponseType(Status200OK, Type = typeof(ItemModel))]
+#if (HasDb)
+    [ProducesResponseType(Status404NotFound)]
+#endif
     public async Task<ActionResult> Get([FromQuery] Guid id)
     {
 #if (HasDb)
@@ -66,6 +69,11 @@ namespace NRSRx_WebApi.Controllers.V1
         .AsNoTracking()
         .FirstOrDefaultAsync(t => t.Id == id)
         .ConfigureAwait(false);
+
+      if (dbItemModel == null)
+      {
+        return NotFound();
+      }
       return Ok(dbItemModel);
 #else
       return Ok();

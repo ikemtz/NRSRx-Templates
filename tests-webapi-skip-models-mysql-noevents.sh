@@ -20,8 +20,17 @@ dotnet build ./tests/My.NRSRx2.WebApi
 #MsSql WebApi Tests
 dotnet new nrsrx-webapi-tests -n My.NRSRx1.WebApi.Tests -S true  -Ev NoEvents -D MsSql -o ./tests/My.NRSRx1.WebApi.Tests --force
 dotnet build ./tests/My.NRSRx1.WebApi.Tests
-dotnet test ./tests/My.NRSRx1.WebApi.Tests --filter TestCategory=Unigration -v minimal --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
-
+dotnet test ./tests/My.NRSRx1.WebApi.Tests \
+  --filter TestCategory=Unigration \
+  --collect "XPlat Code Coverage"  \
+  --logger "html;LogFileName=unit-test-results.html" \
+  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
+  
 dotnet new nrsrx-webapi-tests -n My.NRSRx2.WebApi.Tests -S true -Ev NoEvents -D MsSql -E Asset -o ./tests/My.NRSRx2.WebApi.Tests --force
 dotnet build ./tests/My.NRSRx2.WebApi.Tests
-dotnet test ./tests/My.NRSRx2.WebApi.Tests --filter TestCategory=Unigration -v minimal --collect "XPlat Code Coverage"  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
+dotnet test ./tests/My.NRSRx2.WebApi.Tests \
+  --filter TestCategory=Unigration \
+  --collect "XPlat Code Coverage"  \
+  --logger "html;LogFileName=unit-test-results.html" \
+  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
+  
