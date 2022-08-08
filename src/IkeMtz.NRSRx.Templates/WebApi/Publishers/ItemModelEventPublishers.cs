@@ -1,4 +1,5 @@
 using IkeMtz.NRSRx.Events;
+using System.Diagnostics.CodeAnalysis;
 #if (Redis)
 using IkeMtz.NRSRx.Events.Publishers.Redis;
 using StackExchange.Redis;
@@ -8,6 +9,7 @@ using NRSRx_ServiceName.Models.V1;
 namespace NRSRx_WebApi.Publishers
 {
 #if (Redis)
+  [ExcludeFromCodeCoverage]
   public class ItemModelCreatedPublisher : RedisStreamPublisher<ItemModel, CreatedEvent>,
     ISimplePublisher<ItemModel, CreatedEvent, RedisValue>
   {
@@ -15,6 +17,7 @@ namespace NRSRx_WebApi.Publishers
     {
     }
   }
+  [ExcludeFromCodeCoverage]
   public class ItemModelDeletedPublisher : RedisStreamPublisher<ItemModel, DeletedEvent>,
     ISimplePublisher<ItemModel, DeletedEvent, RedisValue>
   {
@@ -22,6 +25,7 @@ namespace NRSRx_WebApi.Publishers
     {
     }
   }
+  [ExcludeFromCodeCoverage]
   public class ItemModelUpdatedPublisher : RedisStreamPublisher<ItemModel, UpdatedEvent>,
     ISimplePublisher<ItemModel, UpdatedEvent, RedisValue>
   {
