@@ -27,15 +27,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.WebApi" Version="6.0.201.4" />
-    <PackageReference Condition=" '$(ApplicationInsights)' == 'True' " Include="IkeMtz.NRSRx.Logging.ApplicationInsights" Version="6.0.201.4" />
-    <PackageReference Condition=" '$(Elasticsearch)' == 'True' " Include="IkeMtz.NRSRx.Logging.Elasticsearch" Version="6.0.201.4" />
-    <PackageReference Condition=" '$(Splunk)' == 'True' " Include="IkeMtz.NRSRx.Logging.Splunk" Version="6.0.201.4" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.WebApi" Version="6.0.220.7" />
+    <PackageReference Condition=" '$(ApplicationInsights)' == 'True' " Include="IkeMtz.NRSRx.Logging.ApplicationInsights" Version="6.0.220.7" />
+    <PackageReference Condition=" '$(Elasticsearch)' == 'True' " Include="IkeMtz.NRSRx.Logging.Elasticsearch" Version="6.0.220.7" />
+    <PackageReference Condition=" '$(Splunk)' == 'True' " Include="IkeMtz.NRSRx.Logging.Splunk" Version="6.0.220.7" />
     <PackageReference Condition=" '$(MsSql)' == 'True' " Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.7" />
     <PackageReference Condition=" '$(MySql)' == 'True' " Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
-    <PackageReference Condition=" '$(HasDb)' == 'True' " Include="IkeMtz.NRSRx.Core.EntityFramework" Version="6.0.201.4" />
-    <PackageReference Condition=" '$(Redis)' == 'True' " Include="IkeMtz.NRSRx.Events.Publishers.Redis" Version="6.0.201.4" />
-    <PackageReference Condition=" '$(ServiceBus)' == 'True' " Include="IkeMtz.NRSRx.Events.Publishers.ServiceBus" Version="6.0.201.4" />
+    <PackageReference Condition=" '$(HasDb)' == 'True' " Include="IkeMtz.NRSRx.Core.EntityFramework" Version="6.0.220.7" />
+    <PackageReference Condition=" '$(Redis)' == 'True' " Include="IkeMtz.NRSRx.Events.Publishers.Redis" Version="6.0.220.7" />
+    <PackageReference Condition=" '$(ServiceBus)' == 'True' " Include="IkeMtz.NRSRx.Events.Publishers.ServiceBus" Version="6.0.220.7" />
     <ProjectReference Condition=" '$(SkipModelGeneration)' == 'True' " Include="..\NRSRx_ServiceName.Models\NRSRx_ServiceName.Models.csproj" />
   </ItemGroup>
 </Project>

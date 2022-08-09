@@ -21,6 +21,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="6.0.201.4" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="6.0.220.7" />
   </ItemGroup>
 </Project>
