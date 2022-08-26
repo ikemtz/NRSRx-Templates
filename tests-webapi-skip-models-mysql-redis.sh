@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-rm -r ./tests
+rm -r ./tests || true
 
 #Models
 dotnet new nrsrx-models -n My.NRSRx1.Models -o ./tests/My.NRSRx1.Models --force

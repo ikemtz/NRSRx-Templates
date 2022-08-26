@@ -5,7 +5,7 @@ dotnet new --install src/IkeMtz.NRSRx.Templates/'OData Tests'
 dotnet new --install src/IkeMtz.NRSRx.Templates/WebApi
 dotnet new --install src/IkeMtz.NRSRx.Templates/'WebApi Tests'
 
-rm -r ./TestResults
+rm -r ./TestResults || true
 
 set -e
 echo --- Executing tests-models.sh ---
@@ -18,7 +18,7 @@ echo --- Executing tests-odata.sh ---
 /bin/bash -e ./tests-odata.sh
 echo --- Executing tests-webapi-skip-models-mssql-redis.sh ---
 /bin/bash -e ./tests-webapi-skip-models-mssql-redis.sh
-echo --- Executing tests-webapi-skip-models-mysql-noevents.sh ---
+echo --- Executing tests-webapi-skip-models-mysql-redis.sh ---
 /bin/bash -e ./tests-webapi-skip-models-mysql-redis.sh
 echo --- Executing tests-webapi.sh ---
 /bin/bash -e ./tests-webapi.sh
