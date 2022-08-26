@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-rm -r ./tests
+rm -r ./tests || true
 
 #MySql WebApi
 dotnet new nrsrx-WebApi -n My.NRSRx1.WebApi -L Elasticsearch -D MySql -Ev Redis -o ./tests/My.NRSRx1.WebApi --force

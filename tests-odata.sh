@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-rm -r ./tests
+rm -r ./tests || true
 
 #MySql OData
 dotnet new nrsrx-odata -n My.NRSRx1.OData -L Elasticsearch -D MySql -o ./tests/My.NRSRx1.OData --force
