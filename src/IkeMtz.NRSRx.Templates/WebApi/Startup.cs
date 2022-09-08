@@ -39,7 +39,7 @@ namespace NRSRx_WebApi
     {
 #if (MsSql)
       _ = services
-       .AddDbContextPool<DatabaseContext>(x => x.UseSqlServer(dbConnectionString));
+       .AddDbContext<DatabaseContext>(x => x.UseSqlServer(dbConnectionString));
 #endif
 #if (MySql)
       _ = services
