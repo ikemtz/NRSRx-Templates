@@ -40,11 +40,12 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
             });
           })
        );
-      var client = srv.CreateClient();
+      var client = srv.CreateClient(TestContext);
       GenerateAuthHeader(client, GenerateTestToken());
 
       var response = await client.GetAsync($"api/v1/{nameof(ItemModel)}s.json?id={itemModel.Id}");
       var result = await DeserializeResponseAsync<ItemModel>(response);
+      Assert.IsNotNull(result);
       _ = response.EnsureSuccessStatusCode();
       Assert.AreEqual(itemModel.Name, result?.Name);
     }
@@ -56,7 +57,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
     {
       var itemModel = Factories.ItemModelFactory();
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>());
-      var client = srv.CreateClient();
+      var client = srv.CreateClient(TestContext);
       GenerateAuthHeader(client, GenerateTestToken());
 
       var response = await client.GetAsync($"api/v1/{nameof(ItemModel)}s.json?id={itemModel.Id}");
@@ -73,16 +74,18 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
 #endif
       var itemModel = Factories.ItemModelFactory();
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
-        .ConfigureTestServices(x => {
+        .ConfigureTestServices(x =>
+        {
 #if (Redis)
           _ = x.AddSingleton(mockPublisher.Object);
 #endif
         }));
-      var client = srv.CreateClient();
+      var client = srv.CreateClient(TestContext);
       GenerateAuthHeader(client, GenerateTestToken());
 
       var response = await client.PostAsJsonAsync($"api/v1/{nameof(ItemModel)}s.json", itemModel);
       var httpItemModel = await DeserializeResponseAsync<ItemModel>(response);
+      Assert.IsNotNull(httpItemModel);
       _ = response.EnsureSuccessStatusCode();
       Assert.AreEqual("IntegrationTester@email.com", httpItemModel.CreatedBy);
 #if (HasDb)
@@ -106,7 +109,8 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
 #endif
       var originalItemModel = Factories.ItemModelFactory();
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
-        .ConfigureTestServices(x => {
+        .ConfigureTestServices(x =>
+        {
 #if (HasDb)
           ExecuteOnContext<DatabaseContext>(x, db =>
           {
@@ -117,19 +121,20 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
           _ = x.AddSingleton(mockPublisher.Object);
 #endif
         }));
-      var client = srv.CreateClient();
+      var client = srv.CreateClient(TestContext);
       GenerateAuthHeader(client, GenerateTestToken());
 
       var updatedItemModel = JsonClone(originalItemModel);
       updatedItemModel.Name = StringGenerator(100, true, CharacterSets.AlphaNumericChars);
 
       var response = await client.PutAsJsonAsync($"api/v1/{nameof(ItemModel)}s.json?id={updatedItemModel.Id}", updatedItemModel);
-      var httpUpdatedItemModel = await DeserializeResponseAsync<ItemModel>(response);
+      var httpItemModel = await DeserializeResponseAsync<ItemModel>(response);
+      Assert.IsNotNull(httpItemModel);
       _ = response.EnsureSuccessStatusCode();
-      Assert.AreEqual("IntegrationTester@email.com", httpUpdatedItemModel.UpdatedBy);
-      Assert.AreEqual(updatedItemModel.Name, httpUpdatedItemModel.Name);
+      Assert.AreEqual("IntegrationTester@email.com", httpItemModel.UpdatedBy);
+      Assert.AreEqual(updatedItemModel.Name, httpItemModel.Name);
       Assert.IsNull(updatedItemModel.UpdatedOnUtc);
-      Assert.IsNotNull(httpUpdatedItemModel.UpdatedOnUtc);
+      Assert.IsNotNull(httpItemModel.UpdatedOnUtc);
 #if (HasDb)
       var dbContext = srv.GetDbContext<DatabaseContext>();
       var dbUpdatedItemModel = await dbContext.ItemModels.FirstOrDefaultAsync(t => t.Id == originalItemModel.Id);
@@ -137,7 +142,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
       Assert.IsNotNull(dbUpdatedItemModel);
       Assert.AreEqual("IntegrationTester@email.com", dbUpdatedItemModel.UpdatedBy);
       Assert.IsNotNull(dbUpdatedItemModel.UpdatedOnUtc);
-      Assert.AreEqual(httpUpdatedItemModel.UpdatedOnUtc, dbUpdatedItemModel.UpdatedOnUtc);
+      Assert.AreEqual(httpItemModel.UpdatedOnUtc, dbUpdatedItemModel.UpdatedOnUtc);
 #endif
 #if (Redis)
       mockPublisher.Verify(t => t.PublishAsync(It.Is<ItemModel>(t => t.Id == originalItemModel.Id)), Times.Once);
@@ -152,14 +157,15 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
 #if (Redis)
       var mockPublisher = MockRedisStreamFactory<ItemModel, UpdatedEvent>.CreatePublisher();
 #endif
-      var itemModel = Factories.ItemModelFactory(); 
+      var itemModel = Factories.ItemModelFactory();
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
-        .ConfigureTestServices(x => {
+        .ConfigureTestServices(x =>
+        {
 #if (Redis)
           _ = x.AddSingleton(mockPublisher.Object);
 #endif
         }));
-      var client = srv.CreateClient();
+      var client = srv.CreateClient(TestContext);
       GenerateAuthHeader(client, GenerateTestToken());
 
       var response = await client.PutAsJsonAsync($"api/v1/{nameof(ItemModel)}s.json?id={Guid.NewGuid()}", itemModel);
@@ -174,14 +180,15 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
 #if (Redis)
       var mockPublisher = MockRedisStreamFactory<ItemModel, UpdatedEvent>.CreatePublisher();
 #endif
-      var itemModel = Factories.ItemModelFactory(); 
+      var itemModel = Factories.ItemModelFactory();
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
-        .ConfigureTestServices(x => {
+        .ConfigureTestServices(x =>
+        {
 #if (Redis)
           _ = x.AddSingleton(mockPublisher.Object);
 #endif
         }));
-      var client = srv.CreateClient();
+      var client = srv.CreateClient(TestContext);
       GenerateAuthHeader(client, GenerateTestToken());
 
       var response = await client.PutAsJsonAsync($"api/v1/{nameof(ItemModel)}s.json?id={itemModel.Id}", itemModel);
@@ -197,7 +204,8 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
 #endif
       var itemModel = Factories.ItemModelFactory();
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
-        .ConfigureTestServices(x => {
+        .ConfigureTestServices(x =>
+        {
 #if (HasDb)
           ExecuteOnContext<DatabaseContext>(x, db =>
           {
@@ -208,11 +216,12 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
           _ = x.AddSingleton(mockPublisher.Object);
 #endif
         }));
-      var client = srv.CreateClient();
+      var client = srv.CreateClient(TestContext);
       GenerateAuthHeader(client, GenerateTestToken());
 
       var response = await client.DeleteAsync($"api/v1/{nameof(ItemModel)}s.json?id={itemModel.Id}");
-      var httpUpdatedItemModel = await DeserializeResponseAsync<ItemModel>(response);
+      var httpItemModel = await DeserializeResponseAsync<ItemModel>(response);
+      Assert.IsNull(httpItemModel);
       _ = response.EnsureSuccessStatusCode();
 #if (HasDb)
       var dbContext = srv.GetDbContext<DatabaseContext>();
@@ -240,7 +249,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
           _ = x.AddSingleton(mockPublisher.Object);
 #endif
         }));
-      var client = srv.CreateClient();
+      var client = srv.CreateClient(TestContext);
       GenerateAuthHeader(client, GenerateTestToken());
 
       var response = await client.DeleteAsync($"api/v1/{nameof(ItemModel)}s.json?id={itemModel.Id}");

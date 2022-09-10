@@ -19,7 +19,7 @@ namespace NRSRx_ServiceName.OData.Tests.Integration
     [TestMethod]
     [TestCategory("Integration")]
     public async Task GetItemModelsTest()
-    { 
+    {
       var itemModel = Factories.ItemModelFactory();
       using var srv = new TestServer(TestHostBuilder<Startup, IntegrationODataTestStartup>()
           .ConfigureTestServices(x =>
@@ -30,12 +30,13 @@ namespace NRSRx_ServiceName.OData.Tests.Integration
             });
           })
        );
-      var client = srv.CreateClient();
+      var client = srv.CreateClient(TestContext);
       GenerateAuthHeader(client, GenerateTestToken());
 
       var response = await client.GetAsync($"odata/v1/{nameof(ItemModel)}s?$count=true");
       var envelope = await DeserializeResponseAsync<ODataEnvelope<ItemModel>>(response);
-      response.EnsureSuccessStatusCode(); 
+      Assert.IsNotNull(envelope);
+      response.EnsureSuccessStatusCode();
       Assert.AreEqual(envelope?.Count, envelope?.Value.Count());
       envelope?.Value.ToList().ForEach(t =>
       {
@@ -58,11 +59,12 @@ namespace NRSRx_ServiceName.OData.Tests.Integration
             });
           })
        );
-      var client = srv.CreateClient();
+      var client = srv.CreateClient(TestContext);
       GenerateAuthHeader(client, GenerateTestToken());
 
       var response = await client.GetAsync($"odata/v1/{nameof(ItemModel)}s?$apply=groupby(({nameof(itemModel.Name)}))");
       var envelope = await DeserializeResponseAsync<ODataEnvelope<ItemModel>>(response);
+      Assert.IsNotNull(envelope);
       response.EnsureSuccessStatusCode();
     }
   }
