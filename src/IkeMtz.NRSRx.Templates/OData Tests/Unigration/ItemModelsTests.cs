@@ -30,11 +30,12 @@ namespace NRSRx_ServiceName.OData.Tests.Unigration
             });
           })
        );
-      var client = srv.CreateClient();
+      var client = srv.CreateClient(TestContext);
       GenerateAuthHeader(client, GenerateTestToken());
 
       var response = await client.GetAsync($"odata/v1/{nameof(ItemModel)}s?$count=true");
       var envelope = await DeserializeResponseAsync<ODataEnvelope<ItemModel>>(response);
+      Assert.IsNotNull(envelope);
       response.EnsureSuccessStatusCode();
       Assert.AreEqual(itemModel.Name, envelope?.Value.First().Name);
     }

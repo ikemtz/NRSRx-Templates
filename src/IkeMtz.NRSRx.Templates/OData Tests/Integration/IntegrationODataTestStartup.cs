@@ -26,7 +26,9 @@ namespace NRSRx_ServiceName.OData.Tests.Integration
         .AddDbContextPool<DatabaseContext>(x =>
         {
           x.UseSqlServer(dbConnectionString);
-          x.AddInterceptors(new AuditableTestInterceptor(serviceProvider.GetService<IHttpContextAccessor>()));
+          x.AddInterceptors(
+            new CalculatableTestInterceptor(),
+            new AuditableTestInterceptor(serviceProvider.GetService<IHttpContextAccessor>() ?? MockHttpContextAccessorFactory.CreateAccessor()));
         });
 #endif
 #if (MySql)
@@ -34,7 +36,9 @@ namespace NRSRx_ServiceName.OData.Tests.Integration
         .AddDbContext<DatabaseContext>(x =>
         {
           x.UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString));
-          x.AddInterceptors(new AuditableTestInterceptor(serviceProvider.GetService<IHttpContextAccessor>()));
+          x.AddInterceptors(
+            new CalculatableTestInterceptor(),
+            new AuditableTestInterceptor(serviceProvider.GetService<IHttpContextAccessor>() ?? MockHttpContextAccessorFactory.CreateAccessor()));
         });
 #endif
 
