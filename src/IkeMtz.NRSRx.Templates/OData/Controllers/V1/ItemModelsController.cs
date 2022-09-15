@@ -12,7 +12,7 @@ namespace NRSRx_OData.Controllers.V1
 {
   [ApiVersion("1.0")]
   [Authorize]
-  [ResponseCache(Location = ResponseCacheLocation.Any, Duration = 6000)]
+  [ResponseCache(Location = ResponseCacheLocation.Any, Duration = 600)]
   public class ItemModelsController : ODataController
   {
     private readonly DatabaseContext _databaseContext;
