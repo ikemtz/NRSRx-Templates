@@ -64,6 +64,10 @@ jobs:
       includesource: true
       versioningScheme: byBuildNumber
       verbosityPack: 'Minimal'
+  - task: Bash@3
+    displayName: 'Running Tests'
+    inputs:
+      filePath: 'test.sh'
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact'
