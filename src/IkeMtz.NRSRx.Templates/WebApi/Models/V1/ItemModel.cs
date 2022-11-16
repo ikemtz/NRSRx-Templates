@@ -16,5 +16,6 @@ namespace NRSRx_ServiceName.Models.V1
     public string? UpdatedBy { get; set; }
     public DateTimeOffset CreatedOnUtc { get; set; }
     public DateTimeOffset? UpdatedOnUtc { get; set; }
+    public int? UpdateCount { get; set; }
   }
 }

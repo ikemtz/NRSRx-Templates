@@ -1,3 +1,5 @@
+using IkeMtz.NRSRx.Core;
+using IkeMtz.NRSRx.Core.EntityFramework;
 using IkeMtz.NRSRx.Core.Unigration;
 using IkeMtz.NRSRx.Core.Unigration.Data;
 using Microsoft.AspNetCore.Authentication;
@@ -28,7 +30,7 @@ namespace NRSRx_ServiceName.OData.Tests.Integration
           x.UseSqlServer(dbConnectionString);
           x.AddInterceptors(
             new CalculatableTestInterceptor(),
-            new AuditableTestInterceptor(serviceProvider.GetService<IHttpContextAccessor>() ?? MockHttpContextAccessorFactory.CreateAccessor()));
+            new AuditableTestInterceptor(serviceProvider.GetService<ICurrentUserProvider>() ?? new SystemUserProvider()));
         });
 #endif
 #if (MySql)
@@ -38,7 +40,7 @@ namespace NRSRx_ServiceName.OData.Tests.Integration
           x.UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString));
           x.AddInterceptors(
             new CalculatableTestInterceptor(),
-            new AuditableTestInterceptor(serviceProvider.GetService<IHttpContextAccessor>() ?? MockHttpContextAccessorFactory.CreateAccessor()));
+            new AuditableTestInterceptor(serviceProvider.GetService<ICurrentUserProvider>() ?? new SystemUserProvider()));
         });
 #endif
 

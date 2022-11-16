@@ -1,9 +1,9 @@
 #!/bin/bash
-dotnet new --install src/IkeMtz.NRSRx.Templates/Models
-dotnet new --install src/IkeMtz.NRSRx.Templates/OData
-dotnet new --install src/IkeMtz.NRSRx.Templates/'OData Tests'
-dotnet new --install src/IkeMtz.NRSRx.Templates/WebApi
-dotnet new --install src/IkeMtz.NRSRx.Templates/'WebApi Tests'
+dotnet new install src/IkeMtz.NRSRx.Templates/Models --force
+dotnet new install src/IkeMtz.NRSRx.Templates/OData --force
+dotnet new install src/IkeMtz.NRSRx.Templates/'OData Tests' --force
+dotnet new install src/IkeMtz.NRSRx.Templates/WebApi --force
+dotnet new install src/IkeMtz.NRSRx.Templates/'WebApi Tests' --force
 
 rm -r ./TestResults || true
 
@@ -22,3 +22,5 @@ echo --- Executing tests-webapi-skip-models-mysql-redis.sh ---
 /bin/bash -e ./tests-webapi-skip-models-mysql-redis.sh
 echo --- Executing tests-webapi.sh ---
 /bin/bash -e ./tests-webapi.sh
+
+echo  ------ FINISHED ------
