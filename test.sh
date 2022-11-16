@@ -1,11 +1,22 @@
 #!/bin/bash
-dotnet new -h
-dotnet new install ./src/IkeMtz.NRSRx.Templates/Models --force
-dotnet new install ./src/IkeMtz.NRSRx.Templates/OData --force
-dotnet new install ./src/IkeMtz.NRSRx.Templates/'OData Tests' --force
-dotnet new install ./src/IkeMtz.NRSRx.Templates/WebApi --force
-dotnet new install ./src/IkeMtz.NRSRx.Templates/'WebApi Tests' --force
+dotnetVersion=$(dotnet --version)
+export dotnetVersion
+echo "$dotnetVersion"
 
+if [ "$dotnetVersion" == "7.0.100" ]
+then
+  dotnet new install ./src/IkeMtz.NRSRx.Templates/Models --force
+  dotnet new install ./src/IkeMtz.NRSRx.Templates/OData --force
+  dotnet new install ./src/IkeMtz.NRSRx.Templates/'OData Tests' --force
+  dotnet new install ./src/IkeMtz.NRSRx.Templates/WebApi --force
+  dotnet new install ./src/IkeMtz.NRSRx.Templates/'WebApi Tests' --force
+else 
+  dotnet new --install ./src/IkeMtz.NRSRx.Templates/Models
+  dotnet new --install ./src/IkeMtz.NRSRx.Templates/OData
+  dotnet new --install ./src/IkeMtz.NRSRx.Templates/'OData Tests'
+  dotnet new --install ./src/IkeMtz.NRSRx.Templates/WebApi
+  dotnet new --install ./src/IkeMtz.NRSRx.Templates/'WebApi Tests'
+fi
 rm -r ./TestResults || true
 
 set -e
