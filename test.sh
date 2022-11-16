@@ -1,9 +1,9 @@
 #!/bin/bash
-dotnet new install src/IkeMtz.NRSRx.Templates/Models --force
-dotnet new install src/IkeMtz.NRSRx.Templates/OData --force
-dotnet new install src/IkeMtz.NRSRx.Templates/'OData Tests' --force
-dotnet new install src/IkeMtz.NRSRx.Templates/WebApi --force
-dotnet new install src/IkeMtz.NRSRx.Templates/'WebApi Tests' --force
+dotnet new install ./src/IkeMtz.NRSRx.Templates/Models --force
+dotnet new install ./src/IkeMtz.NRSRx.Templates/OData --force
+dotnet new install ./src/IkeMtz.NRSRx.Templates/'OData Tests' --force
+dotnet new install ./src/IkeMtz.NRSRx.Templates/WebApi --force
+dotnet new install ./src/IkeMtz.NRSRx.Templates/'WebApi Tests' --force
 
 rm -r ./TestResults || true
 
