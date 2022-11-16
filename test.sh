@@ -1,4 +1,5 @@
 #!/bin/bash
+dotnet new -h
 dotnet new install ./src/IkeMtz.NRSRx.Templates/Models --force
 dotnet new install ./src/IkeMtz.NRSRx.Templates/OData --force
 dotnet new install ./src/IkeMtz.NRSRx.Templates/'OData Tests' --force
