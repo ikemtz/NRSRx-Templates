@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 rm -r ./tests || true
 
 #MySql OData
