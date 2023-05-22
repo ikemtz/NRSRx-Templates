@@ -85,7 +85,7 @@ namespace NRSRx_WebApi.Controllers.V1
     [ProducesResponseType(Status200OK, Type = typeof(ItemModel))]
     [ValidateModel]
 #if (Redis)
-    public async Task<ActionResult> Post([FromBody] ItemModelUpsertRequest request, [FromServices] RedisStreamPublisher<ItemModel, CreatedEvent> publisher)
+    public async Task<ActionResult> Post([FromBody] ItemModelUpsertRequest request, [FromServices] IPublisher<ItemModel, CreatedEvent> publisher)
 #else
     public async Task<ActionResult> Post([FromBody] ItemModelUpsertRequest request)
 #endif
@@ -121,7 +121,7 @@ namespace NRSRx_WebApi.Controllers.V1
     [ProducesResponseType(Status404NotFound)]
     [ValidateModel]
 #if (Redis)
-    public async Task<ActionResult> Put([FromQuery] Guid id, [FromBody] ItemModelUpsertRequest request, [FromServices] RedisStreamPublisher<ItemModel, UpdatedEvent> publisher)
+    public async Task<ActionResult> Put([FromQuery] Guid id, [FromBody] ItemModelUpsertRequest request, [FromServices] IPublisher<ItemModel, UpdatedEvent> publisher)
 #else
     public async Task<ActionResult> Put([FromQuery] Guid id, [FromBody] ItemModelUpsertRequest request)
 #endif
@@ -183,7 +183,7 @@ namespace NRSRx_WebApi.Controllers.V1
     [ProducesResponseType(Status200OK)]
     [ProducesResponseType(Status404NotFound)]
 #if (Redis)
-    public async Task<ActionResult> Delete([FromQuery] Guid id, [FromServices] RedisStreamPublisher<ItemModel, DeletedEvent> publisher)
+    public async Task<ActionResult> Delete([FromQuery] Guid id, [FromServices] IPublisher<ItemModel, DeletedEvent> publisher)
 #else
     public async Task<ActionResult> Delete([FromQuery] Guid id)
 #endif

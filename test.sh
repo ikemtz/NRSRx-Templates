@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex
 dotnetVersion=$(dotnet --version)
 export dotnetVersion
 echo "$dotnetVersion"
