@@ -14,13 +14,10 @@
   },
   "sourceName": "NRSRx_OData_Tests",
   "preferNameDirectory": true,
-  "guids": [
-    "98048C9C-BF28-46BA-A98E-63767EE5E3A8"
-  ],
+  "guids": ["98048C9C-BF28-46BA-A98E-63767EE5E3A8"],
   "sources": [
     {
-      "modifiers": [
-      ]
+      "modifiers": []
     }
   ],
   "symbols": {
@@ -30,12 +27,12 @@
       "datatype": "choice",
       "choices": [
         {
-          "choice": "net6.0",
-          "description": "Target netcoreapp6.0"
+          "choice": "net7.0",
+          "description": "Target netcoreapp7.0"
         }
       ],
-      "replaces": "net6.0",
-      "defaultValue": "net6.0"
+      "replaces": "net7.0",
+      "defaultValue": "net7.0"
     },
     "EntityName": {
       "type": "parameter",
