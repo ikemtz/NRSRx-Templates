@@ -38,11 +38,11 @@ namespace NRSRx_WebApi
     {
 #if (MsSql)
       _ = services
-       .AddDbContext<DatabaseContext>(x => x.UseSqlServer(dbConnectionString));
+       .AddDbContext<DatabaseContext>(x => x.UseSqlServer(dbConnectionString, options => options.EnableRetryOnFailure()));
 #endif
 #if (MySql)
       _ = services
-        .AddDbContext<DatabaseContext>(x => x.UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString)));
+        .AddDbContext<DatabaseContext>(x => x.UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString), options => options.EnableRetryOnFailure()));
 #endif
     }
 #endif
