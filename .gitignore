@@ -8,3 +8,4 @@ tests
 **/obj
 .dockerignore
 src/IkeMtz.NRSRx.Extensions/Templates
+/src/IkeMtz.NRSRx.Extensions/.vs/IkeMtz.NRSRx.Extensions.csproj.dtbcache.json
