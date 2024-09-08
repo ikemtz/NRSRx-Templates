@@ -31,7 +31,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
     public async Task GetItemModelsTest()
     {
       var itemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
+      using var srv = new TestServer(TestWebHostBuilder<Startup, UnigrationWebApiTestStartup>()
           .ConfigureTestServices(x =>
           {
             ExecuteOnContext<DatabaseContext>(x, db =>
@@ -56,7 +56,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
     public async Task GetItemModelsNotFoundTest()
     {
       var itemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>());
+      using var srv = new TestServer(TestWebHostBuilder<Startup, UnigrationWebApiTestStartup>());
       var client = srv.CreateClient(TestContext);
       GenerateAuthHeader(client, GenerateTestToken());
 
@@ -73,7 +73,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
       var mockPublisher = MockRedisStreamFactory<ItemModel, CreatedEvent>.CreatePublisher();
 #endif
       var itemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
+      using var srv = new TestServer(TestWebHostBuilder<Startup, UnigrationWebApiTestStartup>()
         .ConfigureTestServices(x =>
         {
 #if (Redis)
@@ -108,7 +108,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
       var mockPublisher = MockRedisStreamFactory<ItemModel, UpdatedEvent>.CreatePublisher();
 #endif
       var originalItemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
+      using var srv = new TestServer(TestWebHostBuilder<Startup, UnigrationWebApiTestStartup>()
         .ConfigureTestServices(x =>
         {
 #if (HasDb)
@@ -158,7 +158,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
       var mockPublisher = MockRedisStreamFactory<ItemModel, UpdatedEvent>.CreatePublisher();
 #endif
       var itemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
+      using var srv = new TestServer(TestWebHostBuilder<Startup, UnigrationWebApiTestStartup>()
         .ConfigureTestServices(x =>
         {
 #if (Redis)
@@ -181,7 +181,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
       var mockPublisher = MockRedisStreamFactory<ItemModel, UpdatedEvent>.CreatePublisher();
 #endif
       var itemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
+      using var srv = new TestServer(TestWebHostBuilder<Startup, UnigrationWebApiTestStartup>()
         .ConfigureTestServices(x =>
         {
 #if (Redis)
@@ -203,7 +203,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
       var mockPublisher = MockRedisStreamFactory<ItemModel, DeletedEvent>.CreatePublisher();
 #endif
       var itemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
+      using var srv = new TestServer(TestWebHostBuilder<Startup, UnigrationWebApiTestStartup>()
         .ConfigureTestServices(x =>
         {
 #if (HasDb)
@@ -243,7 +243,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
       var mockPublisher = MockRedisStreamFactory<ItemModel, DeletedEvent>.CreatePublisher();
 #endif
       var itemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
+      using var srv = new TestServer(TestWebHostBuilder<Startup, UnigrationWebApiTestStartup>()
         .ConfigureTestServices(x => {
 #if (Redis)
           _ = x.AddSingleton(mockPublisher.Object);

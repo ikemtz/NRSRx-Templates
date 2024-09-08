@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>NRSRx_WebApi</AssemblyName>
     <UserSecretsId>{98048c9cbf2846baa98e63767ee5e3a8}</UserSecretsId>
     <ProjectGuid>98048c9cbf2846baa98e63767ee5e3a8</ProjectGuid>
@@ -27,15 +27,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.WebApi" Version="7.0.176.2" />
-    <PackageReference Condition=" '$(ApplicationInsights)' == 'True' " Include="IkeMtz.NRSRx.Logging.ApplicationInsights" Version="7.0.176.2" />
-    <PackageReference Condition=" '$(Elasticsearch)' == 'True' " Include="IkeMtz.NRSRx.Logging.Elasticsearch" Version="7.0.176.2" />
-    <PackageReference Condition=" '$(Splunk)' == 'True' " Include="IkeMtz.NRSRx.Logging.Splunk" Version="7.0.176.2" />
-    <PackageReference Condition=" '$(MsSql)' == 'True' " Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.8" />
-    <PackageReference Condition=" '$(MySql)' == 'True' " Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
-    <PackageReference Condition=" '$(HasDb)' == 'True' " Include="IkeMtz.NRSRx.Core.EntityFramework" Version="7.0.176.2" />
-    <PackageReference Condition=" '$(Redis)' == 'True' " Include="IkeMtz.NRSRx.Events.Publishers.Redis" Version="7.0.176.2" />
-    <PackageReference Condition=" '$(ServiceBus)' == 'True' " Include="IkeMtz.NRSRx.Events.Publishers.ServiceBus" Version="7.0.176.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.WebApi" Version="8.0.252.2" />
+    <PackageReference Condition=" '$(ApplicationInsights)' == 'True' " Include="IkeMtz.NRSRx.Logging.ApplicationInsights" Version="8.0.252.2" />
+    <PackageReference Condition=" '$(Elasticsearch)' == 'True' " Include="IkeMtz.NRSRx.Logging.Elasticsearch" Version="8.0.252.2" />
+    <PackageReference Condition=" '$(Splunk)' == 'True' " Include="IkeMtz.NRSRx.Logging.Splunk" Version="8.0.252.2" />
+    <PackageReference Condition=" '$(MsSql)' == 'True' " Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+    <PackageReference Condition=" '$(MySql)' == 'True' " Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
+    <PackageReference Condition=" '$(HasDb)' == 'True' " Include="IkeMtz.NRSRx.Core.EntityFramework" Version="8.0.252.2" />
+    <PackageReference Condition=" '$(Redis)' == 'True' " Include="IkeMtz.NRSRx.Events.Publishers.Redis" Version="8.0.252.2" />
+    <PackageReference Condition=" '$(ServiceBus)' == 'True' " Include="IkeMtz.NRSRx.Events.Publishers.ServiceBus" Version="8.0.252.2" />
     <ProjectReference Condition=" '$(SkipModelGeneration)' == 'True' " Include="..\NRSRx_ServiceName.Models\NRSRx_ServiceName.Models.csproj" />
   </ItemGroup>
 </Project>

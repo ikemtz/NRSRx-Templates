@@ -21,7 +21,7 @@ namespace NRSRx_ServiceName.OData.Tests.Unigration
     public async Task GetItemModelsTest()
     {
       var itemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationODataTestStartup>()
+      using var srv = new TestServer(TestWebHostBuilder<Startup, UnigrationODataTestStartup>()
           .ConfigureTestServices(x =>
           {
             ExecuteOnContext<DatabaseContext>(x, db =>
