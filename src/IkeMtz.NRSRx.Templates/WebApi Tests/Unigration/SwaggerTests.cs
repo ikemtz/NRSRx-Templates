@@ -18,7 +18,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
     [TestCategory("Unigration")]
     public async Task GetSwaggerIndexPageTest()
     {
-      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>());
+      using var srv = new TestServer(TestWebHostBuilder<Startup, UnigrationWebApiTestStartup>());
       var html = await SwaggerUnitTests.TestHtmlPageAsync(srv);
       Assert.IsNotNull(html);
     }
@@ -31,7 +31,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Unigration
       {
         {ReverseProxyDocumentFilter.SwaggerReverseProxyBasePath, "/my-api"},
       };
-      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
+      using var srv = new TestServer(TestWebHostBuilder<Startup, UnigrationWebApiTestStartup>()
         .ConfigureAppConfiguration((builderContext, configurationBuilder) =>
           configurationBuilder.AddInMemoryCollection(myConfiguration)
         ));

@@ -30,7 +30,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Integration
     public async Task GetItemModelsTest()
     {
       var itemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, IntegrationWebApiTestStartup>()
+      using var srv = new TestServer(TestWebHostBuilder<Startup, IntegrationWebApiTestStartup>()
           .ConfigureTestServices(x =>
           {
             ExecuteOnContext<DatabaseContext>(x, db =>
@@ -55,7 +55,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Integration
     public async Task PostItemModelsTest()
     {
       var itemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, IntegrationWebApiTestStartup>());
+      using var srv = new TestServer(TestWebHostBuilder<Startup, IntegrationWebApiTestStartup>());
       var client = srv.CreateClient(TestContext);
       GenerateAuthHeader(client, GenerateTestToken());
 
@@ -78,7 +78,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Integration
     public async Task PutItemModelTest()
     {
       var originalItemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, IntegrationWebApiTestStartup>()
+      using var srv = new TestServer(TestWebHostBuilder<Startup, IntegrationWebApiTestStartup>()
         .ConfigureTestServices(x =>
         {
 #if (HasDb)
@@ -118,7 +118,7 @@ namespace NRSRx_ServiceName.WebApi.Tests.Integration
     public async Task DeleteItemModelTest()
     {
       var itemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, IntegrationWebApiTestStartup>()
+      using var srv = new TestServer(TestWebHostBuilder<Startup, IntegrationWebApiTestStartup>()
         .ConfigureTestServices(x =>
         {
 #if (HasDb)

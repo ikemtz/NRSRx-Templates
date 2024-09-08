@@ -8,3 +8,4 @@ tests
 **/obj
 .dockerignore
 src/IkeMtz.NRSRx.Extensions/Templates
+**/.vs

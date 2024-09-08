@@ -21,7 +21,7 @@ namespace NRSRx_ServiceName.OData.Tests.Integration
     public async Task GetItemModelsTest()
     {
       var itemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, IntegrationODataTestStartup>()
+      using var srv = new TestServer(TestWebHostBuilder<Startup, IntegrationODataTestStartup>()
           .ConfigureTestServices(x =>
           {
             ExecuteOnContext<DatabaseContext>(x, db =>
@@ -50,7 +50,7 @@ namespace NRSRx_ServiceName.OData.Tests.Integration
     public async Task GetGroupByItemModelsTest()
     {
       var itemModel = Factories.ItemModelFactory();
-      using var srv = new TestServer(TestHostBuilder<Startup, IntegrationODataTestStartup>()
+      using var srv = new TestServer(TestWebHostBuilder<Startup, IntegrationODataTestStartup>()
           .ConfigureTestServices(x =>
           {
             ExecuteOnContext<DatabaseContext>(x, db =>

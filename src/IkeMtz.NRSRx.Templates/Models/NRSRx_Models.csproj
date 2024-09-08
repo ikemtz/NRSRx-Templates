@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <ProjectGuid>98048c9cbf2846baa98e63767ee5e3a8</ProjectGuid>
@@ -21,6 +21,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="7.0.176.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="8.0.252.2" />
   </ItemGroup>
 </Project>
