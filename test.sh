@@ -4,7 +4,7 @@ dotnetVersion=$(dotnet --version)
 export dotnetVersion
 echo "$dotnetVersion"
 
-if [ "$dotnetVersion" == "7.0.202" ]
+if [ "$dotnetVersion" == "9.0.103" ]
 then
   dotnet new install ./src/IkeMtz.NRSRx.Templates/Models --force
   dotnet new install ./src/IkeMtz.NRSRx.Templates/OData --force

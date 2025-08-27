@@ -31,8 +31,8 @@
     <PackageReference Condition=" '$(ApplicationInsights)' == 'True' " Include="IkeMtz.NRSRx.Logging.ApplicationInsights" Version="9.1.238.3" />
     <PackageReference Condition=" '$(Elasticsearch)' == 'True' " Include="IkeMtz.NRSRx.Logging.Elasticsearch" Version="9.1.238.3" />
     <PackageReference Condition=" '$(Splunk)' == 'True' " Include="IkeMtz.NRSRx.Logging.Splunk" Version="9.1.238.3" />
-    <PackageReference Condition=" '$(MsSql)' == 'True' " Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
-    <PackageReference Condition=" '$(MySql)' == 'True' " Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
+    <PackageReference Condition=" '$(MsSql)' == 'True' " Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.8" />
+    <PackageReference Condition=" '$(MySql)' == 'True' " Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />
     <PackageReference Condition=" '$(HasDb)' == 'True' " Include="IkeMtz.NRSRx.Core.EntityFramework" Version="9.1.238.3" />
     <PackageReference Condition=" '$(Redis)' == 'True' " Include="IkeMtz.NRSRx.Events.Publishers.Redis" Version="9.1.238.3" />
     <PackageReference Condition=" '$(ServiceBus)' == 'True' " Include="IkeMtz.NRSRx.Events.Publishers.ServiceBus" Version="9.1.238.3" />

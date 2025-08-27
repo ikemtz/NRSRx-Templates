@@ -7,12 +7,9 @@ using Microsoft.AspNetCore.Authentication;
 
 namespace NRSRx_ServiceName.WebApi.Tests.Integration
 {
-  public class IntegrationWebApiTestStartup
-      : CoreWebApiIntegrationTestStartup<Startup>
+  public class IntegrationWebApiTestStartup(IConfiguration configuration)
+            : CoreWebApiIntegrationTestStartup<Startup>(new Startup(configuration)), CoreWebApiIntegrationTestStartup<Startup>
   {
-    public IntegrationWebApiTestStartup(IConfiguration configuration) : base(new Startup(configuration))
-    {
-    }
     public override void SetupAuthentication(AuthenticationBuilder builder)
     {
       builder.SetupTestAuthentication(Configuration, TestContext);

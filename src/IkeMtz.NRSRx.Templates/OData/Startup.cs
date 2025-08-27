@@ -13,9 +13,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace NRSRx_OData
 {
-  public class Startup : CoreODataStartup
+  public class Startup(IConfiguration configuration) : CoreODataStartup(configuration)
   {
-    public override string MicroServiceTitle => $"{nameof(NRSRx_ServiceName)} OData Microservice";
+    public override string ServiceTitle => $"{nameof(NRSRx_ServiceName)} OData Microservice";
     public override Assembly StartupAssembly => typeof(Startup).Assembly;
     public override bool IncludeXmlCommentsInSwaggerDocs => true;
     public override string[] AdditionalAssemblyXmlDocumentFiles => new[] {
@@ -23,10 +23,6 @@ namespace NRSRx_OData
     };
 
     public override BaseODataModelProvider ODataModelProvider => new ODataModelProvider();
-
-    public Startup(IConfiguration configuration) : base(configuration)
-    {
-    }
 #if (HasLogging)
     [ExcludeFromCodeCoverage]
     public override void SetupLogging(IServiceCollection? services = null, IApplicationBuilder? app = null)
