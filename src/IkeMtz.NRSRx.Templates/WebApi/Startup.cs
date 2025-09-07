@@ -21,7 +21,7 @@ using IkeMtz.NRSRx.Events.Publishers.Redis;
 
 namespace NRSRx_WebApi
 {
-  public class Startup(IConfiguration configuration) : CoreWebApiStartup(configuration), CoreWebApiStartup
+  public class Startup(IConfiguration configuration) : CoreWebApiStartup(configuration)
   {
     public override string ServiceTitle => $"{nameof(NRSRx_ServiceName)} WebApi Microservice";
     public override Assembly StartupAssembly => typeof(Startup).Assembly;
@@ -68,9 +68,9 @@ namespace NRSRx_WebApi
 #if (HasDb && Redis)
         .AddDbContextCheck<DatabaseContext>()
         .AddRedis(Configuration.GetValue<string>("REDIS_CONNECTION_STRING"));
-# elseif (HasDb)
+#elseif (HasDb)
         .AddDbContextCheck<DatabaseContext>();
-# elseif (Redis)
+#elseif (Redis)
         .AddRedis(Configuration.GetValue<string>("REDIS_CONNECTION_STRING"));
 #endif
     }

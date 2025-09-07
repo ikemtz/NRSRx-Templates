@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using IkeMtz.NRSRx.Core.Models;
 using IkeMtz.NRSRx.Core.WebApi;
+using IkeMtz.NRSRx.Core.Web;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 #if (HasDb)

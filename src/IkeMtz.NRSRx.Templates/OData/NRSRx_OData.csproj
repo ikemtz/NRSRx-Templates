@@ -27,10 +27,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.OData" Version="9.1.238.3" />
-    <PackageReference Condition=" '$(ApplicationInsights)' == 'True' " Include="IkeMtz.NRSRx.Logging.ApplicationInsights" Version="9.1.238.3" />
-    <PackageReference Condition=" '$(Elasticsearch)' == 'True' " Include="IkeMtz.NRSRx.Logging.Elasticsearch" Version="9.1.238.3" />
-    <PackageReference Condition=" '$(Splunk)' == 'True' " Include="IkeMtz.NRSRx.Logging.Splunk" Version="9.1.238.3" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.OData" Version="9.1.250.2" />
+    <PackageReference Condition=" '$(ApplicationInsights)' == 'True' " Include="IkeMtz.NRSRx.Logging.ApplicationInsights" Version="9.1.250.2" />
+    <PackageReference Condition=" '$(Elasticsearch)' == 'True' " Include="IkeMtz.NRSRx.Logging.Elasticsearch" Version="9.1.250.2" />
+    <PackageReference Condition=" '$(Splunk)' == 'True' " Include="IkeMtz.NRSRx.Logging.Splunk" Version="9.1.250.2" />
     <PackageReference Condition=" '$(MsSql)' == 'True' " Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.8" />
     <PackageReference Condition=" '$(MySql)' == 'True' " Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />
     <ProjectReference Condition=" '$(SkipModelGeneration)' == 'True' " Include="..\NRSRx_ServiceName.Models\NRSRx_ServiceName.Models.csproj" />
