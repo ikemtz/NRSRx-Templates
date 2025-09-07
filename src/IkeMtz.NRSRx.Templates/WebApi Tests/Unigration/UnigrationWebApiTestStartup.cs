@@ -6,12 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace NRSRx_ServiceName.WebApi.Tests.Unigration
 {
-  public class UnigrationWebApiTestStartup
-      : CoreWebApiUnigrationTestStartup<Startup>
+  public class UnigrationWebApiTestStartup(IConfiguration configuration)
+            : CoreWebApiUnigrationTestStartup<Startup>(new Startup(configuration))
   {
-    public UnigrationWebApiTestStartup(IConfiguration configuration) : base(new Startup(configuration))
-    {
-    }
     public override void SetupAuthentication(AuthenticationBuilder builder)
     {
       builder.SetupTestAuthentication(Configuration, TestContext);

@@ -21,16 +21,14 @@ using IkeMtz.NRSRx.Events.Publishers.Redis;
 
 namespace NRSRx_WebApi
 {
-  public class Startup : CoreWebApiStartup
+  public class Startup(IConfiguration configuration) : CoreWebApiStartup(configuration)
   {
-    public override string MicroServiceTitle => $"{nameof(NRSRx_ServiceName)} WebApi Microservice";
+    public override string ServiceTitle => $"{nameof(NRSRx_ServiceName)} WebApi Microservice";
     public override Assembly StartupAssembly => typeof(Startup).Assembly;
     public override bool IncludeXmlCommentsInSwaggerDocs => true;
     public override string[] AdditionalAssemblyXmlDocumentFiles => new[] {
       typeof(ItemModel).Assembly.Location.Replace(".dll", ".xml", StringComparison.InvariantCultureIgnoreCase)
     };
-
-    public Startup(IConfiguration configuration) : base(configuration) { }
 
 #if (HasDb)
     [ExcludeFromCodeCoverage]

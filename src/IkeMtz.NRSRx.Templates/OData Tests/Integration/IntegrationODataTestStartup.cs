@@ -9,13 +9,9 @@ using NRSRx_ServiceName.Data;
 
 namespace NRSRx_ServiceName.OData.Tests.Integration
 {
-  public class IntegrationODataTestStartup
-      : CoreODataIntegrationTestStartup<Startup>
+  public class IntegrationODataTestStartup(IConfiguration configuration)
+            : CoreODataIntegrationTestStartup<Startup>(new Startup(configuration))
   {
-    public IntegrationODataTestStartup(IConfiguration configuration)
-        : base(new Startup(configuration))
-    {
-    }
     public override void SetupAuthentication(AuthenticationBuilder builder)
     {
       builder.SetupTestAuthentication(Configuration, TestContext);
