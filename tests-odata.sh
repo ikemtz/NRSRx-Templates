@@ -83,7 +83,7 @@ dotnet test ./tests/My.NRSRx6.OData.Tests \
   -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
   
 #Oracle OData Tests
-dotnet new nrsrx-odata-tests -n My.NRSRx7.OData.Tests -o ./tests/My.NRSRx7.OData.Tests --force
+dotnet new nrsrx-odata-tests -n My.NRSRx7.OData.Tests -o ./tests/My.NRSRx7.OData.Tests -D Oracle --force
 dotnet build ./tests/My.NRSRx7.OData.Tests
 dotnet test ./tests/My.NRSRx7.OData.Tests \
   --filter TestCategory=Unigration \
@@ -91,7 +91,7 @@ dotnet test ./tests/My.NRSRx7.OData.Tests \
   --logger "html;LogFileName=unit-test-results.html" \
   -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
 
-dotnet new nrsrx-odata-tests -n My.NRSRx8.OData.Tests -o ./tests/My.NRSRx8.OData.Tests --force
+dotnet new nrsrx-odata-tests -n My.NRSRx8.OData.Tests -o ./tests/My.NRSRx8.OData.Tests -D Oracle --force
 dotnet build ./tests/My.NRSRx8.OData.Tests
 dotnet test ./tests/My.NRSRx8.OData.Tests \
   --filter TestCategory=Unigration \
@@ -99,7 +99,7 @@ dotnet test ./tests/My.NRSRx8.OData.Tests \
   --logger "html;LogFileName=unit-test-results.html" \
   -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
 
-dotnet new nrsrx-odata-tests -n My.NRSRx9.OData.Tests -o ./tests/My.NRSRx9.OData.Tests --force
+dotnet new nrsrx-odata-tests -n My.NRSRx9.OData.Tests -o ./tests/My.NRSRx9.OData.Tests -D Oracle --force
 dotnet build ./tests/My.NRSRx9.OData.Tests
 dotnet test ./tests/My.NRSRx9.OData.Tests \
   --filter TestCategory=Unigration \

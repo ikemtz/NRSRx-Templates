@@ -57,3 +57,21 @@ dotnet test ./tests/My.NRSRx6.WebApi.Tests \
   --collect "XPlat Code Coverage"  \
   --logger "html;LogFileName=unit-test-results.html" \
   -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
+
+dotnet new nrsrx-webapi -n My.NRSRx7.WebApi -L ApplicationInsights -D Oracle -Ev Redis -o ./tests/My.NRSRx7.WebApi --force
+dotnet build ./tests/My.NRSRx7.WebApi
+dotnet new nrsrx-webapi-tests -n My.NRSRx7.WebApi.Tests -D Oracle -Ev Redis -o ./tests/My.NRSRx7.WebApi.Tests --force
+dotnet test ./tests/My.NRSRx7.WebApi.Tests \
+  --filter TestCategory=Unigration \
+  --collect "XPlat Code Coverage"  \
+  --logger "html;LogFileName=unit-test-results.html" \
+  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover
+
+dotnet new nrsrx-webapi -n My.NRSRx8.WebApi -L ApplicationInsights -D Oracle -Ev NoEvents -o ./tests/My.NRSRx8.WebApi --force
+dotnet build ./tests/My.NRSRx8.WebApi
+dotnet new nrsrx-webapi-tests -n My.NRSRx8.WebApi.Tests -D Oracle -Ev NoEvents -o ./tests/My.NRSRx8.WebApi.Tests --force
+dotnet test ./tests/My.NRSRx8.WebApi.Tests \
+  --filter TestCategory=Unigration \
+  --collect "XPlat Code Coverage"  \
+  --logger "html;LogFileName=unit-test-results.html" \
+  -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,opencover

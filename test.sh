@@ -12,11 +12,11 @@ then
   dotnet new install ./src/IkeMtz.NRSRx.Templates/WebApi --force
   dotnet new install ./src/IkeMtz.NRSRx.Templates/'WebApi Tests' --force
 else 
-  dotnet new --install ./src/IkeMtz.NRSRx.Templates/Models
-  dotnet new --install ./src/IkeMtz.NRSRx.Templates/OData
-  dotnet new --install ./src/IkeMtz.NRSRx.Templates/'OData Tests'
-  dotnet new --install ./src/IkeMtz.NRSRx.Templates/WebApi
-  dotnet new --install ./src/IkeMtz.NRSRx.Templates/'WebApi Tests'
+  dotnet new --install ./src/IkeMtz.NRSRx.Templates/Models --force
+  dotnet new --install ./src/IkeMtz.NRSRx.Templates/OData --force
+  dotnet new --install ./src/IkeMtz.NRSRx.Templates/'OData Tests' --force
+  dotnet new --install ./src/IkeMtz.NRSRx.Templates/WebApi --force
+  dotnet new --install ./src/IkeMtz.NRSRx.Templates/'WebApi Tests' --force
 fi
 rm -r ./TestResults || true
 
