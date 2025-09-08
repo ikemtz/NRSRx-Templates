@@ -33,6 +33,7 @@
     <PackageReference Condition=" '$(Splunk)' == 'True' " Include="IkeMtz.NRSRx.Logging.Splunk" Version="9.1.250.2" />
     <PackageReference Condition=" '$(MsSql)' == 'True' " Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.8" />
     <PackageReference Condition=" '$(MySql)' == 'True' " Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />
+    <PackageReference Condition=" '$(Oracle)' == 'True' " Include="Oracle.EntityFrameworkCore" Version="9.23.90" />
     <PackageReference Condition=" '$(HasDb)' == 'True' " Include="IkeMtz.NRSRx.Core.EntityFramework" Version="9.1.250.2" />
     <PackageReference Condition=" '$(Redis)' == 'True' " Include="IkeMtz.NRSRx.Events.Publishers.Redis" Version="9.1.250.2" />
     <PackageReference Condition=" '$(ServiceBus)' == 'True' " Include="IkeMtz.NRSRx.Events.Publishers.ServiceBus" Version="9.1.250.2" />

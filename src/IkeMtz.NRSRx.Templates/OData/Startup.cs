@@ -48,7 +48,11 @@ namespace NRSRx_OData
 #endif
 #if (MySql)
       _ = services
-        .AddDbContext<DatabaseContext>(x => x.UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString), options => options.EnableRetryOnFailure()));
+        .AddDbContextPool<DatabaseContext>(x => x.UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString), options => options.EnableRetryOnFailure()));
+#endif
+#if (Oracle)
+      _ = services
+        .AddDbContextPool<DatabaseContext>(x => x.UseOracle(dbConnectionString, options => options.EnableRetryOnFailure()));
 #endif
     }
 

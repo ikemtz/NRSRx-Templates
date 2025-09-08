@@ -111,6 +111,11 @@
           "choice": "MySql",
           "displayName": "MySql Server",
           "description": "Use a MySql database"
+        },
+        {
+          "choice": "Oracle",
+          "displayName": "Oracle",
+          "description": "Use an Oracle database"
         }
       ],
       "defaultValue": "MsSql",
