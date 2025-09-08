@@ -42,6 +42,10 @@ namespace NRSRx_WebApi
       _ = services
         .AddDbContext<DatabaseContext>(x => x.UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString), options => options.EnableRetryOnFailure()));
 #endif
+#if (Oracle)
+      _ = services
+        .AddDbContext<DatabaseContext>(x => x.UseOracle(dbConnectionString, options => options.EnableRetryOnFailure()));
+#endif
     }
 #endif
 

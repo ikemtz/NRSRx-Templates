@@ -126,6 +126,11 @@
           "description": "Use a MySql database"
         },
         {
+          "choice": "Oracle",
+          "displayName": "Oracle",
+          "description": "Use an Oracle database"
+        },
+        {
           "choice": "NoDb",
           "displayName": "No Database",
           "description": "This WebApi will not have a persisted state"

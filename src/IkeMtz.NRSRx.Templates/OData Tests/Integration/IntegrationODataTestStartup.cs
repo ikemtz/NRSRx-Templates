@@ -21,7 +21,7 @@ namespace NRSRx_ServiceName.OData.Tests.Integration
       var serviceProvider = services.BuildServiceProvider();
 #if (MsSql)
        _ = services
-        .AddDbContextPool<DatabaseContext>(x =>
+        .AddDbContext<DatabaseContext>(x =>
         {
           x.UseSqlServer(dbConnectionString);
           x.AddInterceptors(
@@ -34,6 +34,16 @@ namespace NRSRx_ServiceName.OData.Tests.Integration
         .AddDbContext<DatabaseContext>(x =>
         {
           x.UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString));
+          x.AddInterceptors(
+            new CalculatableTestInterceptor(),
+            new AuditableTestInterceptor(serviceProvider.GetService<ICurrentUserProvider>() ?? new SystemUserProvider()));
+        });
+#endif
+#if (Oracle)
+       _ = services
+        .AddDbContext<DatabaseContext>(x =>
+        {
+          x.UseOracle(dbConnectionString);
           x.AddInterceptors(
             new CalculatableTestInterceptor(),
             new AuditableTestInterceptor(serviceProvider.GetService<ICurrentUserProvider>() ?? new SystemUserProvider()));
